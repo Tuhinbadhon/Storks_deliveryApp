@@ -140,20 +140,20 @@ const Navbar = () => {
               </ul>
             )}
           </div>
-          <div className="flex items-center w-auto">
+          <div className="flex gap-1 items-center ">
             <Link to="/">
               {" "}
-              <img
-                className="lg:w-16 lg:h-16 md:w-12 md:h-12 w-10 h-10 "
-                src="/logo.png"
-                alt=""
-              />{" "}
+              <img className="w-28 " src="/logo.png" alt="" />{" "}
             </Link>
-            <Link
-              to="/"
-              className="btn max-[450px]:hidden  btn-ghost lg:text-3xl md:text-2xl font-bold max-[450px]:text-xl bg-gradient-to-r from-green-500 to-[#59C6D2] text-transparent bg-clip-text p-0"
-            >
-              STUDY LAB
+            <Link to="/" className=" ">
+              <div className=" flex flex-col text-start items-start p-0 ml-0  ">
+                <h2 className="uppercase lg:text-2xl md:text-2xl font-extrabold ">
+                  storks
+                </h2>
+                <p className="uppercase text-xs font-bold ">
+                  We deliver parcel worldwide{" "}
+                </p>
+              </div>
             </Link>
           </div>
         </div>
