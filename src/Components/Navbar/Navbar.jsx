@@ -6,12 +6,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { LuLogIn, LuLogOut } from "react-icons/lu";
+import { LuLogIn, LuLogOut, LuAlignJustify } from "react-icons/lu";
 import { MdAppRegistration } from "react-icons/md";
+import { IoCloseSharp } from "react-icons/io5";
 
 defineElement(lottie.loadAnimation);
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const { user, signOutUser } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [theme, setTheme] = useState("light");
@@ -20,7 +22,10 @@ const Navbar = () => {
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
-
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+    setIsDropdownOpen(!isDropdownOpen);
+  };
   const handleToogle = (e) => {
     if (e.target.checked) {
       setTheme("dark");
@@ -100,57 +105,48 @@ const Navbar = () => {
       });
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
   return (
     <div>
       <ToastContainer />
-      <div className="navbar bg-base-100">
+      <div className="navbar  bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost pl-4 lg:hidden"
+              className="btn  btn-ghost pl-4 lg:hidden"
               onClick={toggleDropdown}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              {isOpen ? (
+                <IoCloseSharp className="text-xl" />
+              ) : (
+                <LuAlignJustify className="text-xl" />
+              )}
             </div>
             {isDropdownOpen && (
               <ul
                 tabIndex={0}
-                className="menu  menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52 font-semibold "
+                className="menu  menu-sm dropdown-content mt-2 z-[10] p-2 shadow bg-base-100 rounded-box w-52 font-semibold "
               >
                 {navlink}
               </ul>
             )}
           </div>
-          <div className="flex gap-1 items-center ">
+          <div className="flex gap-1 w-full items-center ">
             <Link to="/">
               {" "}
-              <img className="w-28 " src="/logo.png" alt="" />{" "}
+              <img
+                className="w-28 max-[450px]:w-20  "
+                src="/logo.png"
+                alt=""
+              />{" "}
             </Link>
-            <Link to="/" className=" ">
+            <Link to="/" className=" max-[450px]:hidden">
               <div className=" flex flex-col text-start items-start p-0 ml-0  ">
-                <h2 className="uppercase lg:text-2xl md:text-2xl font-extrabold ">
+                <h2 className="uppercase text-2xl max-[450px]:text-xl  font-extrabold ">
                   storks
                 </h2>
-                <p className="uppercase text-xs font-bold ">
+                <p className="uppercase text-xs font-bold  ">
                   We deliver parcel worldwide{" "}
                 </p>
               </div>
