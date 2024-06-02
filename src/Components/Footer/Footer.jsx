@@ -4,10 +4,10 @@ import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="dark:bg-indigo-50 dark:text-black md:py-10 py-7 ">
+    <div className=" ">
       {/* className="" */}
       <footer
-        className="  to-transparent 
+        className="  to-transparent dark:bg-indigo-50 dark:text-black md:py-20 py-7
       bg-opacity-5  place-items-center w-full gap-4 
             text-base-content flex flex-col   md:px-14  lg:mt-20 mt-5 px-5 "
       >
@@ -26,14 +26,14 @@ const Footer = () => {
             </Link>
           </div>
           <div className="flex flex-col  text-center  ">
-            <h6 className="font-bold text-black ">USEFUL LINKS</h6>
+            <h6 className="font-bold text-black md:mb-5 ">USEFUL LINKS</h6>
             <a className="link link-hover text-gray-700">History</a>
             <a className="link link-hover text-gray-700">Services</a>
             <a className="link link-hover text-gray-700">About Us</a>
             <a className="link link-hover text-gray-700">Company Timeline</a>
           </div>
           <div className="flex flex-col gap-1 text-center">
-            <h6 className="font-bold text-black ">Contacts</h6>
+            <h6 className="font-bold text-black md:mb-5">Contacts</h6>
             <a className="link link-hover text-gray-700">+8801815-0000000</a>
             <a className="link link-hover text-gray-700">
               tuhinbadhon@gmail.com
@@ -43,19 +43,22 @@ const Footer = () => {
             </a>
           </div>
           <div className="text-center">
-            <h6 className="font-bold text-black ">Social</h6>
+            <h6 className="font-bold text-black md:mb-5 ">Social</h6>
             <div className="grid grid-flow-col gap-4 justify-center">
               <a href="">
-                <FaFacebook className="text-2xl text-blue-600" />
+                <FaFacebook className="text-4xl text-blue-600" />
               </a>
               <a href="">
-                <FaTwitter className="text-2xl text-blue-500" />
+                <FaTwitter className="text-4xl text-blue-500" />
               </a>
               <a href="">
-                <FaYoutube className="text-2xl text-red-600" />
+                <FaYoutube className="text-4xl text-red-600" />
               </a>
             </div>
-            <form className="mt-5 ">
+          </div>
+          <div>
+            <form className=" flex flex-col items-center  ">
+              <h6 className="font-bold text-black md:mb-5">Newsletter</h6>
               <fieldset className="form-control w-80">
                 <label className="label">
                   <span className="text-gray-700">
@@ -77,7 +80,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <div className="font-semibold p-2  text-center mt-7  ">
+      <div className="font-semibold p-2  text-center  bg-neutral text-neutral-content  ">
         <p>
           Copyright © 2024 - All right reserved by{" "}
           <Link

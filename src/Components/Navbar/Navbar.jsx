@@ -9,6 +9,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { LuLogIn, LuLogOut, LuAlignJustify } from "react-icons/lu";
 import { MdAppRegistration } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
+import { IoMdNotificationsOutline } from "react-icons/io";
 
 defineElement(lottie.loadAnimation);
 
@@ -44,7 +45,12 @@ const Navbar = () => {
 
       <li>
         <Link to="/assignment" onClick={() => setIsDropdownOpen(false)}>
-          Assignments
+          Dashboard
+        </Link>
+      </li>
+      <li>
+        <Link to="/assignment" onClick={() => setIsDropdownOpen(false)}>
+          <IoMdNotificationsOutline />
         </Link>
       </li>
 
