@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Components/Navbar/Navbar";
 import Footer from "../Components/Footer/Footer";
+import TopArrow from "../Components/TopArrow/TopArrow";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ const MainLayout = () => {
     <div className="">
       {noHeaderFooter || <Navbar />}
       <Outlet />
+      <TopArrow />
       {noHeaderFooter || <Footer />}
     </div>
   );
