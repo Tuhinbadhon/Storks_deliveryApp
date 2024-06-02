@@ -75,7 +75,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="font-semibold p-2  text-center  bg-neutral text-neutral-content  ">
-        <p>
+        <p className="text-sm">
           Copyright © 2024 - All right reserved by{" "}
           <Link
             to="/"

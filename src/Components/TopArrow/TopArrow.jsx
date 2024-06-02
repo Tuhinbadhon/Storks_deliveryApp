@@ -44,7 +44,7 @@ const Wrapper = styled.section`
   position: relative;
 
   .top-btn {
-    font-size: 2.4rem;
+    font-size: 2rem;
     width: 3rem;
     height: 3rem;
 

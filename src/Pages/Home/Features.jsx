@@ -16,8 +16,19 @@ const Features = () => {
   return (
     <div className="md:mx-24 mx-5">
       <div className=" text-center mt-20">
-        <h2 className="text-3xl font-bold">Features</h2>
-        <p className="text-lg mt-3 mx-5">
+        <h2
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          className="text-3xl uppercase font-bold"
+        >
+          Features
+        </h2>
+        <p
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          data-aos-delay="200"
+          className="text-lg mt-3 mx-5"
+        >
           We're leading{" "}
           <span className="font-bold text-orange-400">Parcel Service</span> in
           the world
@@ -26,7 +37,12 @@ const Features = () => {
 
       {/*features cards  */}
 
-      <div className=" mt-7 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        data-aos-delay="300"
+        className=" mt-7 grid grid-cols-1 md:grid-cols-3 gap-5"
+      >
         <div className="card p-5  lg:card-side bg-base-100 shadow-xl">
           <div className="p-4 justify-center items-center flex">
             <RxRocket className="w-20 text-gray-300 h-20  " />
@@ -72,11 +88,16 @@ const Features = () => {
       </div>
 
       {/* statistic cards */}
-      <div className="mt-2  ">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        data-aos-delay="400"
+        className="mt-2  "
+      >
         <div className=" grid grid-cols-1 md:grid-cols-3 gap-5">
           <div className=" p-2   bg-gray-800 shadow-xl">
             <div className="p-2 justify-center items-center flex">
-              <TbWorldCheck className="w-20 text-gray-300 h-20  " />
+              <TbWorldCheck className="w-10 text-gray-300 h-10  " />
             </div>
             <div className="flex flex-col  max-[450px]:mt-3 justify-center items-center ">
               <h2 className="text-3xl text-orange-500 font-bold uppercase mb-2">
@@ -88,7 +109,7 @@ const Features = () => {
           </div>
           <div className=" p-2 bg-gray-800   shadow-xl">
             <div className="p-2 justify-center items-center flex">
-              <CiDeliveryTruck className="w-20 text-gray-300 h-20  " />
+              <CiDeliveryTruck className="w-10 text-gray-300 h-10  " />
             </div>
             <div className="flex flex-col  max-[450px]:mt-3 justify-center items-center ">
               <h2 className="text-3xl text-orange-500 font-bold uppercase mb-2">
@@ -99,7 +120,7 @@ const Features = () => {
           </div>
           <div className=" p-2 bg-gray-800   shadow-xl">
             <div className="p-2 justify-center items-center flex">
-              <FaUserTie className="w-20 text-gray-300 h-20  " />
+              <FaUserTie className="w-10 text-gray-300 h-10  " />
             </div>
             <div className="flex flex-col  max-[450px]:mt-3 justify-center items-center ">
               <h2 className="text-3xl text-orange-500 font-bold uppercase mb-2">
