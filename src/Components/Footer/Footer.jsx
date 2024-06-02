@@ -13,7 +13,7 @@ const Footer = () => {
       >
         <div className="w-full flex  lg:flex-row md:flex-row md:justify-between flex-col gap-4 lg:justify-between ">
           <div className="flex flex-col max-[450px]:items-center ">
-            <img className="w-28 max-[450px]:w-20" src="/logo.png" alt="" />
+            <img className="w-20 " src="/logo.png" alt="" />
             <Link to="/" className=" ">
               <div className=" flex flex-col  lg:text-start md:items-start items-center p-0 ml-0  ">
                 <h2 className="uppercase text-2xl max-[450px]:text-xl  text-black   font-extrabold ">

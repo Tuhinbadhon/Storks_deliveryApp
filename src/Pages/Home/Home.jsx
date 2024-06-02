@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { DNA, Radio } from "react-loader-spinner";
+import Banner from "./Banner";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -51,6 +52,7 @@ const Home = () => {
           <title>STORKS | Home</title>
         </Helmet>
       </HelmetProvider>
+      <Banner />
     </div>
   );
 };

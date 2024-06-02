@@ -114,7 +114,7 @@ const Navbar = () => {
   return (
     <div>
       <ToastContainer />
-      <div className="navbar  bg-base-100">
+      <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl text-white bg-black">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -132,7 +132,7 @@ const Navbar = () => {
             {isDropdownOpen && (
               <ul
                 tabIndex={0}
-                className="menu  menu-sm dropdown-content mt-2 z-[10] p-2 shadow bg-base-100 rounded-box w-52 font-semibold "
+                className="menu  menu-sm dropdown-content mt-2 z-[10] p-2 shadow bg-black bg-opacity-20 rounded-box w-52 font-semibold "
               >
                 {navlink}
               </ul>

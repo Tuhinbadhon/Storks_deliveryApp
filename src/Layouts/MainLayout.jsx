@@ -9,10 +9,8 @@ const MainLayout = () => {
     location.pathname.includes("login") ||
     location.pathname.includes("registration");
   return (
-    <div className="mx-auto">
-      <div className="lg:mt-7 mt-5 lg:mx-20">
-        {noHeaderFooter || <Navbar />}
-      </div>
+    <div className="">
+      {noHeaderFooter || <Navbar />}
       <Outlet />
       {noHeaderFooter || <Footer />}
     </div>
