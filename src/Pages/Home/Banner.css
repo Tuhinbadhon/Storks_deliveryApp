@@ -22,3 +22,6 @@
   height: 700px; /* Adjust height as needed */
   object-fit: cover;
 }
+.mySwiper .swiper-wrapper {
+  transition-timing-function: ease-in-out; /* or any other easing function you prefer */
+}
