@@ -4,6 +4,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { DNA, Radio } from "react-loader-spinner";
 import Banner from "./Banner";
+import Features from "./Features";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -53,6 +54,7 @@ const Home = () => {
         </Helmet>
       </HelmetProvider>
       <Banner />
+      <Features />
     </div>
   );
 };
