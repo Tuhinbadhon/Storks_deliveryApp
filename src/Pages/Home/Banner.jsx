@@ -48,9 +48,9 @@ const Banner = () => {
               className="space-y-7 w-8/12  text-center "
             >
               <h2 className="font-bold lg:text-5xl text-white uppercase md:text-2xl ">
-                We are <span className="text-orange-400">Experts</span> in
-                Global <span className="text-indigo-400">COURIER</span> &
-                <span className="text-indigo-400"> DELIVERY</span>
+                We are <span className="text-orange-500">Experts</span> in
+                Global <span className="text-indigo-500">COURIER</span> &
+                <span className="text-indigo-500"> DELIVERY</span>
               </h2>
               <p className="max-[450px]:text-xs text-white">
                 We have 20 years of experience in the courier industry. Our
@@ -72,9 +72,9 @@ const Banner = () => {
           <div className="absolute   h-full flex left-0 top-0 items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
             <div className="space-y-7 w-8/12 text-center ">
               <h2 className="font-bold lg:text-5xl text-white  uppercase md:text-2xl ">
-                We are <span className="text-orange-400">Experts</span> in
-                Global <span className="text-indigo-400">COURIER</span> &
-                <span className="text-indigo-400"> DELIVERY</span>
+                We are <span className="text-orange-500">Experts</span> in
+                Global <span className="text-indigo-500">COURIER</span> &
+                <span className="text-indigo-500"> DELIVERY</span>
               </h2>
               <p className="max-[450px]:text-xs text-white ">
                 We have 20 years of experience in the courier industry. Our
@@ -96,9 +96,9 @@ const Banner = () => {
           <div className="absolute   h-full flex left-0 top-0 items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
             <div className="space-y-7 w-8/12 text-center ">
               <h2 className="font-bold text-white lg:text-5xl uppercase md:text-2xl ">
-                We are <span className="text-orange-400">Experts</span> in
-                Global <span className="text-indigo-400">COURIER</span> &
-                <span className="text-indigo-400"> DELIVERY</span>
+                We are <span className="text-orange-500">Experts</span> in
+                Global <span className="text-indigo-500">COURIER</span> &
+                <span className="text-indigo-500"> DELIVERY</span>
               </h2>
               <p className="max-[450px]:text-xs text-white">
                 We have 20 years of experience in the courier industry. Our
@@ -120,9 +120,9 @@ const Banner = () => {
           <div className="absolute   h-full flex left-0 top-0 items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
             <div className="space-y-7 w-8/12  text-center ">
               <h2 className="font-bold lg:text-5xl text-white uppercase md:text-3xl ">
-                We are <span className="text-orange-400">Experts</span> in
-                Global <span className="text-indigo-400">COURIER</span> &
-                <span className="text-indigo-400"> DELIVERY</span>
+                We are <span className="text-orange-500">Experts</span> in
+                Global <span className="text-indigo-500">COURIER</span> &
+                <span className="text-indigo-500"> DELIVERY</span>
               </h2>
               <p className="max-[450px]:text-xs text-white">
                 We have 20 years of experience in the courier industry. Our

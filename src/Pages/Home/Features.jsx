@@ -30,7 +30,7 @@ const Features = () => {
           className="text-lg mt-3 mx-5"
         >
           We're leading{" "}
-          <span className="font-bold text-orange-400">Parcel Service</span> in
+          <span className="font-bold text-orange-500">Parcel Service</span> in
           the world
         </p>
       </div>
