@@ -120,7 +120,7 @@ const Navbar = () => {
   return (
     <div>
       <ToastContainer />
-      <div className="navbar fixed z-10 bg-opacity-40 max-w-screen-xl mx-auto text-white bg-black">
+      <div className="navbar fixed z-10 bg-opacity-60 max-w-screen-xl mx-auto text-white bg-black">
         <div className="navbar-start">
           <div className="dropdown">
             <div

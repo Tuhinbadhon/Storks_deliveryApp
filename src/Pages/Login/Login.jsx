@@ -35,7 +35,7 @@ const Login = () => {
     }
   };
 
-  const { signInUser, signInWithGoogle, signInWithGithub } =
+  const { signInUser, signInWithGoogle, signInWithGithub, signInWithFacebook } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -83,12 +83,9 @@ const Login = () => {
         });
       });
   };
-
-  //github login
-  const githubLoginHandler = () => {
-    signInWithGithub()
+  const facebookLoginHandler = () => {
+    signInWithFacebook()
       .then((result) => {
-        const loggedUser = result.user;
         Swal.fire({
           text: "Successfully login",
           icon: "success",
@@ -102,6 +99,25 @@ const Login = () => {
         });
       });
   };
+
+  //github login
+  // const githubLoginHandler = () => {
+  //   signInWithGithub()
+  //     .then((result) => {
+  //       const loggedUser = result.user;
+  //       Swal.fire({
+  //         text: "Successfully login",
+  //         icon: "success",
+  //       });
+  //       navigate(from, { replace: true });
+  //     })
+  //     .catch((error) => {
+  //       Swal.fire({
+  //         text: error.message,
+  //         icon: "error",
+  //       });
+  //     });
+  // };
 
   return (
     <div className=" py-10  bg-gradient-to-r from-blue-500 via-pink-200 to-purple-500  p-5">
@@ -136,7 +152,7 @@ const Login = () => {
             <p>Login with Google</p>
           </button>
           <button
-            onClick={githubLoginHandler}
+            onClick={facebookLoginHandler}
             aria-label="Login with GitHub"
             role="button"
             className="btn  bg-[#3d5b99]  flex items-center justify-center w-full p-4 space-x-4 border rounded-3xl focus:ring-2 focus:ring-offset-1 dark:border-gray-100 focus:dark:ring-violet-100"

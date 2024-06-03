@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
+  FacebookAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -14,8 +15,9 @@ import axios from "axios";
 import auth from "../../firebase.config";
 
 export const AuthContext = createContext(null);
-const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
+const googleProvider = new GoogleAuthProvider(); //google authentication
+const githubProvider = new GithubAuthProvider(); //github authentication
+const facebookProvider = new FacebookAuthProvider(); //Facebook authentication
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -44,6 +46,10 @@ const AuthProvider = ({ children }) => {
   const signInWithGithub = () => {
     setLoading(true);
     return signInWithPopup(auth, githubProvider);
+  };
+  const signInWithFacebook = () => {
+    setLoading(true);
+    return signInWithPopup(auth, facebookProvider);
   };
 
   // observe state change if the user is logged in or not
@@ -86,6 +92,7 @@ const AuthProvider = ({ children }) => {
     signOutUser,
     signInWithGoogle,
     signInWithGithub,
+    signInWithFacebook,
   };
 
   return (
