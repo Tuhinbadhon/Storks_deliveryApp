@@ -120,7 +120,7 @@ const Login = () => {
   // };
 
   return (
-    <div className=" py-10  bg-gradient-to-r from-blue-500 via-pink-200 to-purple-500  p-5">
+    <div className=" py-10 max-[450px]:h-svh  bg-gradient-to-r from-pink-400  to-purple-500  p-5">
       <HelmetProvider context={helmetContext}>
         <Helmet>
           <title>Login</title>

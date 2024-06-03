@@ -60,23 +60,23 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       console.log(currentUser);
       //if user exist then issue a token
-      if (currentUser) {
-        axios
-          .post("https://b9a11server-site.vercel.app/jwt", loggedUser, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log("token response", res.data);
-          });
-      } else {
-        axios
-          .post("https://b9a11server-site.vercel.app/logout", loggedUser, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log(res.data);
-          });
-      }
+      // if (currentUser) {
+      //   axios
+      //     .post("https://b9a11server-site.vercel.app/jwt", loggedUser, {
+      //       withCredentials: true,
+      //     })
+      //     .then((res) => {
+      //       console.log("token response", res.data);
+      //     });
+      // } else {
+      //   axios
+      //     .post("https://b9a11server-site.vercel.app/logout", loggedUser, {
+      //       withCredentials: true,
+      //     })
+      //     .then((res) => {
+      //       console.log(res.data);
+      //     });
+      // }
       setLoading(false);
     });
     return () => {

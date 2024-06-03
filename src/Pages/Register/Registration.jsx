@@ -93,7 +93,7 @@ const Registration = () => {
 
   return (
     <div>
-      <div className=" p-10 bg-gradient-to-r from-blue-500 via-pink-200 to-purple-500 ">
+      <div className=" max-[450px]:h-svh  py-10 p-5 bg-gradient-to-r from-pink-400  to-purple-500 ">
         <HelmetProvider context={helmetContext}>
           <Helmet>
             <title>Registration</title>
