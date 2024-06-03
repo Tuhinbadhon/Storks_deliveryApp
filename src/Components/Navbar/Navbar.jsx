@@ -14,9 +14,11 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 defineElement(lottie.loadAnimation);
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const { user, signOutUser } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [Open, setOpen] = useState(false);
+  const [DropdownOpen, setDropdownOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -26,6 +28,10 @@ const Navbar = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
     setIsDropdownOpen(!isDropdownOpen);
+  };
+  const toggleDropdownAvatar = () => {
+    setOpen(!Open);
+    setDropdownOpen(!DropdownOpen);
   };
   const handleToogle = (e) => {
     if (e.target.checked) {
@@ -194,11 +200,11 @@ const Navbar = () => {
           </label>
           {user ? (
             <>
-              <div className="dropdown dropdown-end z-50">
+              <div className="dropdown dropdown-end  z-50">
                 <div
                   tabIndex={0}
                   role="button"
-                  onClick={toggleDropdown}
+                  onClick={toggleDropdownAvatar}
                   className="btn btn-ghost  btn-circle avatar "
                 >
                   <button
@@ -216,30 +222,26 @@ const Navbar = () => {
                   </button>
                 </div>
 
-                {isDropdownOpen && (
+                {DropdownOpen && (
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                    className="menu menu-sm rounded-md dropdown-content mt-3 z-[1] p-2 shadow bg-black bg-opacity-30  w-52"
                   >
                     <li>
-                      <Link
-                        to="/mysubmitted"
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        My Submit
-                      </Link>
+                      <div className="uppercase">{user.displayName}</div>
                     </li>
                     <li>
                       <Link
                         to="/dashboard/cart"
                         onClick={() => setIsDropdownOpen(false)}
+                        className="hover:bg-black hover:bg-opacity-30"
                       >
                         Dashboard
                       </Link>
                     </li>
                     <li className="mt-2">
                       <button
-                        className="bg-gray-200 block text-center "
+                        className="hover:bg-black hover:bg-opacity-30 block text-center "
                         onClick={logOutHandler}
                       >
                         Log Out{" "}

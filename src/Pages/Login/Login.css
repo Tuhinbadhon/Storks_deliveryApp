@@ -1,0 +1,5 @@
+.text-gradient2 {
+  background-image: linear-gradient(to right, #2d30ca, #fb6f24);
+  background-clip: text;
+  color: transparent;
+}
