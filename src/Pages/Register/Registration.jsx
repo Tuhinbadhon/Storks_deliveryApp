@@ -93,14 +93,14 @@ const Registration = () => {
 
   return (
     <div>
-      <div className="my-10 p-4 ">
+      <div className=" p-10 bg-gradient-to-r from-blue-500 via-pink-200 to-purple-500 ">
         <HelmetProvider context={helmetContext}>
           <Helmet>
             <title>Registration</title>
           </Helmet>
         </HelmetProvider>
-        <div className="mx-auto w-full max-w-md p-4 rounded-xl shadow sm:p-8 bg-gradient-to-r from-blue-200 to-pink-100 ">
-          <h2 className="mb-3 text-3xl font-semibold text-center text-gradient">
+        <div className="mx-auto w-full max-w-md p-4 rounded-xl shadow sm:p-8 bg-white ">
+          <h2 className="mb-5 text-3xl font-bold text-center text-gradient">
             Register NOW!
           </h2>
 
@@ -118,7 +118,7 @@ const Registration = () => {
           <form
             noValidate=""
             action=""
-            className="space-y-8"
+            className="space-y-8 mt-9"
             onSubmit={registerFormHandler}
           >
             <div className="space-y-4">
@@ -130,7 +130,7 @@ const Registration = () => {
                   type="text"
                   name="name"
                   placeholder="Your Name"
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400 "
                   required
                 />
               </div>
@@ -142,7 +142,7 @@ const Registration = () => {
                   type="text"
                   name="photoURL"
                   placeholder="http://www......"
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
                 />
               </div>
               <div className="space-y-2">
@@ -152,8 +152,8 @@ const Registration = () => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="username@gmail.com"
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                  placeholder="Enter your email here"
+                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
                   required
                 />
               </div>
@@ -169,7 +169,7 @@ const Registration = () => {
                     name="password"
                     id="password"
                     placeholder="*****"
-                    className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                    className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
                     required
                   />
                   <span
@@ -191,7 +191,7 @@ const Registration = () => {
                   type="text"
                   name="captcha"
                   placeholder="Type the captcha here "
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
                   required
                 />
               </div>
