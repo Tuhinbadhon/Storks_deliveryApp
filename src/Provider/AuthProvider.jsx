@@ -2,14 +2,14 @@ import React, { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   FacebookAuthProvider,
+  GithubAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
-
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { GithubAuthProvider } from "firebase/auth";
 
 import axios from "axios";
 import auth from "../../firebase.config";

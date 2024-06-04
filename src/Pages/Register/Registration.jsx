@@ -96,20 +96,20 @@ const Registration = () => {
       <div className=" max-[450px]:h-svh  py-10 p-5 bg-gradient-to-r from-pink-400  to-purple-500 ">
         <HelmetProvider context={helmetContext}>
           <Helmet>
-            <title>Registration</title>
+            <title>Sign Up</title>
           </Helmet>
         </HelmetProvider>
-        <div className="mx-auto w-full max-w-md p-4 rounded-xl shadow sm:p-8 bg-white ">
-          <h2 className="mb-5 text-3xl font-bold text-center text-gradient">
-            Register NOW!
+        <div className="mx-auto  bg-white w-full max-w-md p-10 rounded-2xl shadow max-[450px]:p-8">
+          <h2 className="mb-5 mt-7 text-3xl font-bold text-center uppercase text-gradient">
+            Create Account!
           </h2>
 
-          <p className="text-sm text-center dark:text-gray-600">
+          <p className="text-sm font-semibold text-center dark:text-gray-600">
             Already have an account?{" "}
             <Link
               to="/login"
               rel="noopener noreferrer"
-              className="focus:underline hover:underline text-primary"
+              className="focus:underline font-semibold hover:underline text-primary"
             >
               Login here
             </Link>
@@ -123,7 +123,7 @@ const Registration = () => {
           >
             <div className="space-y-4">
               <div className="space-y-2">
-                <label htmlFor="text" className="block text-sm">
+                <label htmlFor="text" className="block font-semibold text-sm">
                   Your Name
                 </label>
                 <input
@@ -135,7 +135,7 @@ const Registration = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="text" className="block text-sm">
+                <label htmlFor="text" className="block font-semibold text-sm">
                   Photo URL
                 </label>
                 <input
@@ -146,7 +146,7 @@ const Registration = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm">
+                <label htmlFor="email" className="block font-semibold text-sm">
                   Email address
                 </label>
                 <input
@@ -159,7 +159,7 @@ const Registration = () => {
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <label htmlFor="password" className="text-sm">
+                  <label htmlFor="password" className="text-sm font-semibold">
                     Password
                   </label>
                 </div>
@@ -202,7 +202,7 @@ const Registration = () => {
                 onClick={() => setShowButton(!showButton)}
                 required
               />
-              <p>
+              <p className="font-semibold">
                 I accept all the{" "}
                 <a href="">
                   <u>Terms & Conditions</u>
@@ -211,11 +211,11 @@ const Registration = () => {
             </div>
 
             <button
-              className="btn w-full  px-8 py-3 
-                        font-semibold rounded-md dark:bg-pink-600 hover:bg-pink-800 dark:text-gray-50"
+              className="btn w-full  px-8 
+                        font-bold rounded-3xl dark:bg-pink-500 hover:bg-purple-500 dark:text-gray-50"
               disabled={disabled}
             >
-              {isLoading ? "Loading..." : "Register"}
+              {isLoading ? "Loading..." : "Sign Up"}
             </button>
           </form>
         </div>

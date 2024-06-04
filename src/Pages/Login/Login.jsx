@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
+import {
+  FaEye,
+  FaEyeSlash,
+  FaFacebook,
+  FaFacebookF,
+  FaGoogle,
+  FaTwitter,
+} from "react-icons/fa";
 import "./Login.css";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -131,41 +138,7 @@ const Login = () => {
         <h2 className="mb-5  p-3 text-4xl font-bold text-center text-gradient2">
           Login
         </h2>
-        <p className="text-sm text-center dark:text-gray-600">
-          Don't have an account?{" "}
-          <Link
-            to="/registration"
-            rel="noopener noreferrer"
-            className="focus:underline hover:underline text-primary"
-          >
-            Register here
-          </Link>
-        </p>
-        <div className="my-6 space-y-4">
-          <button
-            onClick={googleLoginHandler}
-            aria-label="Login with Google"
-            type="button"
-            className="btn bg-[#4588f0] text-white flex items-center justify-center w-full p-4 space-x-4 border rounded-3xl focus:ring-2 focus:ring-offset-1 dark:border-gray-200 focus:dark:ring-violet-100"
-          >
-            <FaGoogle className="text-xl" />
-            <p>Login with Google</p>
-          </button>
-          <button
-            onClick={facebookLoginHandler}
-            aria-label="Login with GitHub"
-            role="button"
-            className="btn  bg-[#3d5b99]  flex items-center justify-center w-full p-4 space-x-4 border rounded-3xl focus:ring-2 focus:ring-offset-1 dark:border-gray-100 focus:dark:ring-violet-100"
-          >
-            <FaFacebook className="text-white text-xl" />
-            <p className="text-white">Login with Facebook</p>
-          </button>
-        </div>
-        <div className="flex items-center w-full my-4">
-          <hr className="w-full dark:text-gray-600" />
-          <p className="px-3 dark:text-gray-600">OR</p>
-          <hr className="w-full dark:text-gray-600" />
-        </div>
+
         <form
           noValidate=""
           action=""
@@ -174,7 +147,7 @@ const Login = () => {
         >
           <div className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm">
+              <label htmlFor="email" className="block font-semibold text-sm">
                 Email address
               </label>
               <input
@@ -188,16 +161,9 @@ const Login = () => {
             </div>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <label htmlFor="password" className="text-sm">
+                <label htmlFor="password" className="font-semibold text-sm">
                   Password
                 </label>
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="text-xs hover:underline dark:text-gray-600"
-                >
-                  Forgot password?
-                </a>
               </div>
               <div className="relative">
                 <input
@@ -217,6 +183,15 @@ const Login = () => {
                   {showPass ? <FaEyeSlash /> : <FaEye />}
                 </span>
               </div>
+              <div className="flex justify-end font-semibold">
+                <a
+                  rel="noopener noreferrer"
+                  href="#"
+                  className="text-xs hover:underline dark:text-gray-600"
+                >
+                  Forgot password?
+                </a>
+              </div>
             </div>
             <div className="space-y-2">
               <label className="label  ">
@@ -234,11 +209,51 @@ const Login = () => {
           </div>
           <button
             disabled={disabled}
-            className="btn w-full  px-8 py-3 font-semibold rounded-3xl dark:bg-indigo-500 hover:bg-indigo-700 dark:text-gray-50"
+            className="btn w-full  px-8 py-3 font-semibold rounded-3xl dark:bg-purple-500 hover:bg-pink-500 dark:text-gray-50"
           >
             Log in
           </button>
         </form>
+
+        <p className="mt-8 text-sm font-semibold text-center">
+          Or Sign Up Using
+        </p>
+        <div className=" flex justify-center gap-2 items-baseline  space-y-4">
+          <button
+            onClick={facebookLoginHandler}
+            aria-label="Login with GitHub"
+            role="button"
+            className="btn  bg-[#3d5b99]  flex items-center justify-center  p-4 space-x-4 border rounded-3xl focus:ring-2 focus:ring-offset-1 dark:border-gray-100 focus:dark:ring-violet-100"
+          >
+            <FaFacebookF className="text-white text-xl" />
+          </button>
+          {/* <button
+            onClick={facebookLoginHandler}
+            aria-label="Login with GitHub"
+            role="button"
+            className="btn  bg-[#45a1f1]  flex items-center justify-center  p-4 space-x-4 border rounded-3xl focus:ring-2 focus:ring-offset-1 dark:border-gray-100 focus:dark:ring-violet-100"
+          >
+            <FaTwitter className="text-white text-xl" />
+          </button> */}
+          <button
+            onClick={googleLoginHandler}
+            aria-label="Login with Google"
+            type="button"
+            className="btn bg-red-500 text-white flex items-center justify-center  p-4 space-x-4 border rounded-3xl focus:ring-2 focus:ring-offset-1 dark:border-gray-200 focus:dark:ring-violet-100"
+          >
+            <FaGoogle className="text-xl" />
+          </button>
+        </div>
+        <p className="text-sm mt-14 flex flex-col font-semibold text-center dark:text-gray-600">
+          Don't Have Account?{" "}
+          <Link
+            to="/registration"
+            rel="noopener noreferrer"
+            className="uppercase mt-3 font-bold text-primary"
+          >
+            Sign Up
+          </Link>
+        </p>
       </div>
     </div>
   );
