@@ -14,8 +14,10 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Registration = () => {
+  const axiosPublic = useAxiosPublic();
   const [registerError, setRegisterError] = useState("");
   const [showPass, setShowpass] = useState(false);
   const [showButton, setShowButton] = useState(true);
@@ -69,7 +71,24 @@ const Registration = () => {
           displayName: name,
           photoURL: photoURL,
         })
-          .then(() => {})
+          .then(() => {
+            const userinfo = {
+              name: name,
+              email: email,
+            };
+            axiosPublic.post("/users", userinfo).then((res) => {
+              if (res.data.insertedID) {
+                console.log("user added to the database");
+                e.target.reset();
+                setShowpass(false);
+
+                Swal.fire({
+                  text: "Successfully Registered",
+                  icon: "success",
+                });
+              }
+            });
+          })
           .catch((error) => {
             Swal.fire({
               text: error.message,

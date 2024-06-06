@@ -14,7 +14,7 @@ const Features = () => {
     scrollSpyDelay: 1000,
   });
   return (
-    <div className="md:mx-24 mx-5">
+    <div className="lg:mx-24 mx-5">
       <div className=" text-center mt-20">
         <h2
           data-aos="fade-up"

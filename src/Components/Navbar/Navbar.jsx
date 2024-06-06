@@ -10,6 +10,7 @@ import { LuLogIn, LuLogOut, LuAlignJustify } from "react-icons/lu";
 import { MdAppRegistration } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import logo from "../../../public/logo.png";
 
 defineElement(lottie.loadAnimation);
 
@@ -147,11 +148,7 @@ const Navbar = () => {
           <div className="flex gap-1 w-full items-center ">
             <Link to="/">
               {" "}
-              <img
-                className="w-28 max-[450px]:w-20  "
-                src="/logo.png"
-                alt=""
-              />{" "}
+              <img className="w-24 max-[450px]:w-20  " src={logo} alt="" />{" "}
             </Link>
             <Link to="/" className=" max-[450px]:hidden">
               <div className=" flex flex-col text-start items-start p-0 ml-0  ">

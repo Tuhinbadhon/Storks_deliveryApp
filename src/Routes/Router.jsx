@@ -8,7 +8,7 @@ import PrivateRoutes2 from "../PrivetRoutes/PrivetRoutes2";
 import PrivateRoutes from "../PrivetRoutes/PrivetRoutes";
 // import Dashboard from "../Layouts/Dashboard";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
@@ -42,4 +42,3 @@ const router = createBrowserRouter([
   //   children: [{}],
   // },
 ]);
-export default router;
