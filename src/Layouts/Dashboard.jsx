@@ -17,7 +17,6 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
-// import useAdmin from "../hooks/useAdmin";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { LuListChecks } from "react-icons/lu";
 import { IoMdCheckboxOutline } from "react-icons/io";
@@ -25,9 +24,10 @@ import { ImBoxAdd } from "react-icons/im";
 import { FaListCheck } from "react-icons/fa6";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-// import useDeliveryMan from "../hooks/useDeliveryMan"; // New hook for delivery man
+import { useState } from "react";
 
 const Dashboard = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const isAdmin = true;
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
@@ -38,13 +38,24 @@ const Dashboard = () => {
     },
   });
 
-  // const [isDeliveryMan] = useDeliveryMan(); // Get delivery man status
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <div className="flex">
+      {/* Toggle Button for Small Screens */}
+      <button className="lg:hidden p-4" onClick={toggleSidebar}>
+        <FaList />
+      </button>
+
       {/* dashboard side bar */}
-      <div className="w-64 min-h-screen font-semibold bg-[#404345] text-white">
-        <ul className="menu p-4">
+      <div
+        className={`w-64 min-h-screen font-semibold bg-[#404345] text-white fixed lg:relative z-10 lg:z-auto transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 transition-transform duration-200 ease-in-out`}
+      >
+        <ul className="menu min-h-screen p-4">
           {isAdmin ? (
             <>
               <li>
@@ -111,7 +122,7 @@ const Dashboard = () => {
           )}
           {/* shared nav links */}
           <div
-            className="divider  "
+            className="divider"
             style={{ backgroundColor: "white", height: "1px" }}
           ></div>
           <li>
@@ -122,8 +133,17 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
+
+      {/* Overlay for Sidebar on Small Screens */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 lg:hidden"
+          onClick={toggleSidebar}
+        ></div>
+      )}
+
       {/* dashboard content */}
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 lg:ml-5">
         <Outlet></Outlet>
       </div>
     </div>
