@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Registration.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -23,7 +23,7 @@ const Registration = () => {
   const [showButton, setShowButton] = useState(true);
   const [isLoading, setIsLoading] = useState(false); // State for loading indicator
   const [disabled, setDisabled] = useState(true);
-
+  const navigate = useNavigate();
   const authInfo = useContext(AuthContext);
   const { createUser } = authInfo;
 
@@ -72,21 +72,18 @@ const Registration = () => {
           photoURL: photoURL,
         })
           .then(() => {
-            const userinfo = {
-              name: name,
-              email: email,
-            };
+            const userinfo = { name, email };
             axiosPublic.post("/users", userinfo).then((res) => {
               if (res.data.insertedID) {
-                console.log("user added to the database");
+                console.log("User added to the database");
                 e.target.reset();
-                setShowpass(false);
-
+                setShowPass(false);
                 Swal.fire({
                   text: "Successfully Registered",
                   icon: "success",
                 });
               }
+              setIsLoading(false);
             });
           })
           .catch((error) => {
@@ -94,6 +91,7 @@ const Registration = () => {
               text: error.message,
               icon: "error",
             });
+            setIsLoading(false);
           });
 
         e.target.reset();
@@ -105,8 +103,10 @@ const Registration = () => {
         Swal.fire({
           text: error.message,
           icon: "error",
+        }).then(() => {
+          setIsLoading(false); // Hide loading indicator
+          window.location.reload(); // Refresh the page on error
         });
-        setIsLoading(false); // Hide loading indicator
       });
   };
 

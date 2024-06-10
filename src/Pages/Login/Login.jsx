@@ -20,30 +20,37 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
   const [showPass, setShowpass] = useState(false);
   const helmetContext = {};
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
   const from = location.state?.from?.pathname || "/";
   // const captchaRef = useRef(null);
-  const [disabled, setDisabled] = useState(true);
+  // const [disabled, setDisabled] = useState(true);
 
   // captcha
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-  const handleValidateCaptcha = (e) => {
-    const user_captcha_value = e.target.value;
-    if (validateCaptcha(user_captcha_value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  };
+  // useEffect(() => {
+  //   loadCaptchaEnginge(6);
+  // }, []);
+  // const handleValidateCaptcha = (e) => {
+  //   const user_captcha_value = e.target.value;
+  //   if (validateCaptcha(user_captcha_value)) {
+  //     setDisabled(false);
+  //   } else {
+  //     setDisabled(true);
+  //   }
+  // };
 
-  const { signInUser, signInWithGoogle, signInWithGithub, signInWithFacebook } =
-    useContext(AuthContext);
+  const {
+    signInUser,
+    signInWithGoogle,
+    signInWithGithub,
+    signInWithFacebook,
+    signInWithTwitter,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // email login
@@ -55,6 +62,14 @@ const Login = () => {
 
     signInUser(email, password)
       .then((result) => {
+        console.log(result.user);
+        const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email || "N/A",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
         Swal.fire({
           text: "Successfully login",
           icon: "success",
@@ -69,6 +84,8 @@ const Login = () => {
         Swal.fire({
           text: "Invalid Username/Password",
           icon: "error",
+        }).then(() => {
+          window.location.reload(); // Refresh the page on error
         });
       });
   };
@@ -77,6 +94,15 @@ const Login = () => {
   const googleLoginHandler = () => {
     signInWithGoogle()
       .then((result) => {
+        console.log(result.user);
+        const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email || "N/A",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
+
         Swal.fire({
           text: "Successfully login",
           icon: "success",
@@ -93,6 +119,39 @@ const Login = () => {
   const facebookLoginHandler = () => {
     signInWithFacebook()
       .then((result) => {
+        console.log(result.user);
+        const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email || "N/A",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
+        Swal.fire({
+          text: "Successfully login",
+          icon: "success",
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          text: error.message,
+          icon: "error",
+        });
+      });
+  };
+  const twitterHandler = () => {
+    signInWithTwitter()
+      .then((result) => {
+        console.log(result.user);
+        const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email || "N/A",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
+
         Swal.fire({
           text: "Successfully login",
           icon: "success",
@@ -193,7 +252,7 @@ const Login = () => {
                 </a>
               </div>
             </div>
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <label className="label  ">
                 <LoadCanvasTemplate />
               </label>
@@ -205,12 +264,9 @@ const Login = () => {
                 className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400  "
                 required
               />
-            </div>
+            </div> */}
           </div>
-          <button
-            disabled={disabled}
-            className="btn w-full  px-8 py-3 font-semibold rounded-3xl dark:bg-purple-500 hover:bg-pink-500 dark:text-gray-50"
-          >
+          <button className="btn w-full  px-8 py-3 font-semibold rounded-3xl dark:bg-purple-500 hover:bg-pink-500 dark:text-gray-50">
             Log in
           </button>
         </form>
@@ -227,14 +283,14 @@ const Login = () => {
           >
             <FaFacebookF className="text-white text-xl" />
           </button>
-          {/* <button
-            onClick={facebookLoginHandler}
+          <button
+            onClick={twitterHandler}
             aria-label="Login with GitHub"
             role="button"
             className="btn  bg-[#45a1f1]  flex items-center justify-center  p-4 space-x-4 border rounded-3xl focus:ring-2 focus:ring-offset-1 dark:border-gray-100 focus:dark:ring-violet-100"
           >
             <FaTwitter className="text-white text-xl" />
-          </button> */}
+          </button>
           <button
             onClick={googleLoginHandler}
             aria-label="Login with Google"

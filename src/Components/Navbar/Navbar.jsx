@@ -51,19 +51,22 @@ const Navbar = () => {
       </li>
 
       <li>
-        <Link to="/assignment" onClick={() => setIsDropdownOpen(false)}>
+        <Link to="/dashboard" onClick={() => setIsDropdownOpen(false)}>
           Dashboard
         </Link>
       </li>
       <li>
-        <Link to="/assignment" onClick={() => setIsDropdownOpen(false)}>
-          <IoMdNotificationsOutline />
+        <Link to="/" onClick={() => setIsDropdownOpen(false)}>
+          <button className="flex justify-center  items-center">
+            <IoMdNotificationsOutline className="text-xl" />
+            <sup className=" text-sm text-white  border-none">1</sup>
+          </button>
         </Link>
       </li>
 
       {user ? (
         <>
-          <li>
+          {/* <li>
             <Link
               to="/createassignment"
               onClick={() => setIsDropdownOpen(false)}
@@ -81,7 +84,7 @@ const Navbar = () => {
             <Link to="/profile" onClick={() => setIsDropdownOpen(false)}>
               View Profile
             </Link>
-          </li>
+          </li> */}
         </>
       ) : (
         ""
@@ -139,7 +142,7 @@ const Navbar = () => {
             {isDropdownOpen && (
               <ul
                 tabIndex={0}
-                className="menu  menu-sm dropdown-content mt-2 z-[10] p-2 shadow bg-black bg-opacity-20 rounded-box w-52 font-semibold "
+                className="menu  menu-sm dropdown-content mt-2 z-[10] p-2 shadow bg-black bg-opacity-60 rounded-box w-52 font-semibold "
               >
                 {navlink}
               </ul>
@@ -222,23 +225,23 @@ const Navbar = () => {
                 {DropdownOpen && (
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm rounded-md dropdown-content mt-3 z-[1] p-2 shadow bg-black bg-opacity-30  w-52"
+                    className="menu menu-sm rounded-md dropdown-content mt-3 z-[1] p-2 shadow bg-black bg-opacity-60  w-52"
                   >
                     <li>
                       <div className="uppercase">{user.displayName}</div>
                     </li>
                     <li>
                       <Link
-                        to="/dashboard/cart"
+                        to="/dashboard"
                         onClick={() => setIsDropdownOpen(false)}
-                        className="hover:bg-black hover:bg-opacity-30"
+                        className="hover:bg-black hover:bg-opacity-60"
                       >
                         Dashboard
                       </Link>
                     </li>
                     <li className="mt-2">
                       <button
-                        className="hover:bg-black hover:bg-opacity-30 block text-center "
+                        className="hover:bg-black hover:bg-opacity-60 block text-center "
                         onClick={logOutHandler}
                       >
                         Log Out{" "}

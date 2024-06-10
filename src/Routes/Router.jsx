@@ -6,7 +6,11 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Register/Registration";
 import PrivateRoutes2 from "../PrivetRoutes/PrivetRoutes2";
 import PrivateRoutes from "../PrivetRoutes/PrivetRoutes";
-// import Dashboard from "../Layouts/Dashboard";
+import Dashboard from "../Layouts/Dashboard";
+import AdminRoute from "../PrivetRoutes/AdminRoute";
+import UserHome from "../Pages/Dashboard/UserHome";
+import AdminHome from "../Pages/Dashboard/AdminHome";
+import AllUsers from "../Pages/Dashboard/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -32,13 +36,59 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "dashboard",
-  //   element: (
-  //     <PrivateRoutes>
-  //       <Dashboard />
-  //     </PrivateRoutes>
-  //   ),
-  //   children: [{}],
-  // },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoutes>
+        <Dashboard />
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path: "userHome",
+        element: <UserHome></UserHome>,
+      },
+      //admin routes
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
+      // {
+      //   path: "addItems",
+      //   element: (
+      //     <AdminRoute>
+      //       <AddItems></AddItems>
+      //     </AdminRoute>
+      //   ),
+      // },
+      // {
+      //   path: "manageItems",
+      //   element: (
+      //     <AdminRoute>
+      //       <ManageItems></ManageItems>
+      //     </AdminRoute>
+      //   ),
+      // },
+      // {
+      //   path: "updateItem/:id",
+      //   element: (
+      //     <AdminRoute>
+      //       <UpdateItem></UpdateItem>
+      //     </AdminRoute>
+      //   ),
+      //   loader: ({ params }) =>
+      //     fetch(
+      //       `https://bistro-boss-server-seven-sage.vercel.app/menu/${params.id}`
+      //     ),
+      // },
+      {
+        path: "users",
+        element: <AllUsers></AllUsers>,
+      },
+    ],
+  },
 ]);

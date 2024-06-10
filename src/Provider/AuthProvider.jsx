@@ -4,6 +4,7 @@ import {
   FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
+  TwitterAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -18,6 +19,7 @@ export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider(); //google authentication
 const githubProvider = new GithubAuthProvider(); //github authentication
 const facebookProvider = new FacebookAuthProvider(); //Facebook authentication
+const twitterProvider = new TwitterAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -50,6 +52,10 @@ const AuthProvider = ({ children }) => {
   const signInWithFacebook = () => {
     setLoading(true);
     return signInWithPopup(auth, facebookProvider);
+  };
+  const signInWithTwitter = () => {
+    setLoading(true);
+    return signInWithPopup(auth, twitterProvider);
   };
 
   // observe state change if the user is logged in or not
@@ -93,6 +99,7 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     signInWithGithub,
     signInWithFacebook,
+    signInWithTwitter,
   };
 
   return (

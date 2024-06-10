@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 const TopDeliveryMan = () => {
   return (
     <div className="lg:mx-24 mx-5">
-      <div className=" text-center mt-20">
+      <div className=" mx-auto md:w-7/12 text-center mt-20 md:mb-10">
         <h2
           data-aos="fade-up"
           data-aos-duration="2000"
