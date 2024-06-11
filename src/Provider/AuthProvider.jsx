@@ -14,16 +14,18 @@ import {
 
 import axios from "axios";
 import auth from "../../firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
-const googleProvider = new GoogleAuthProvider(); //google authentication
-const githubProvider = new GithubAuthProvider(); //github authentication
-const facebookProvider = new FacebookAuthProvider(); //Facebook authentication
-const twitterProvider = new TwitterAuthProvider();
 
 const AuthProvider = ({ children }) => {
+  const googleProvider = new GoogleAuthProvider(); //google authentication
+  const githubProvider = new GithubAuthProvider(); //github authentication
+  const facebookProvider = new FacebookAuthProvider(); //Facebook authentication
+  const twitterProvider = new TwitterAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -61,10 +63,19 @@ const AuthProvider = ({ children }) => {
   // observe state change if the user is logged in or not
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      const userEmail = currentUser?.email || user?.email;
-      const loggedUser = { email: userEmail };
       setUser(currentUser);
       console.log(currentUser);
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
+
       //if user exist then issue a token
       // if (currentUser) {
       //   axios
@@ -88,7 +99,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

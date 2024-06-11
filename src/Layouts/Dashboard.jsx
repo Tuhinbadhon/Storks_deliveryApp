@@ -25,10 +25,13 @@ import { FaListCheck } from "react-icons/fa6";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import useAdmin from "../hooks/useAdmin";
+import useDeliveryMan from "../hooks/useDeliveryMan";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  const [isDeliveryMan] = useDeliveryMan();
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -43,7 +46,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="md:flex">
       {/* Toggle Button for Small Screens */}
       <button className="lg:hidden p-4" onClick={toggleSidebar}>
         <FaList />

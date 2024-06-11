@@ -1,25 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
 import useAuth from "./useAuth";
+import useAxiosSecure from "./useAxiosSecure";
 
-const useAdmin = () => {
+const useDeliveryMan = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const {
-    data: isAdmin,
-    isLoading: isAdminLoading,
+    data: isDeliveryMan,
+    isLoading: isDeliveryManLoading,
     error,
   } = useQuery({
-    queryKey: [user?.email, "isAdmin"],
+    queryKey: [user?.email, "Delivery-Man"],
     queryFn: async () => {
       if (!user?.email) {
         return false; // If user email is not available, return false
       }
       try {
-        const res = await axiosSecure.get(`/users/admin/${user.email}`);
+        const res = await axiosSecure.get(`/users/deliveryMan/${user.email}`);
         console.log(res.data);
-        return res.data?.admin;
+        return res.data?.deliveryMan;
       } catch (error) {
         console.error("Error fetching admin status:", error);
         throw error;
@@ -32,7 +32,7 @@ const useAdmin = () => {
     console.error("Error fetching admin status:", error);
   }
 
-  return [isAdmin, isAdminLoading];
+  return [isDeliveryMan, isDeliveryManLoading];
 };
 
-export default useAdmin;
+export default useDeliveryMan;
