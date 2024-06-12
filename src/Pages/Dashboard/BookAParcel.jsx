@@ -53,16 +53,19 @@ const BookAParcel = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/parcels", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          status: "pending", // Default status
-        }),
-      });
+      const response = await fetch(
+        "https://server-side-puce-alpha.vercel.app/parcels",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            status: "pending", // Default status
+          }),
+        }
+      );
 
       if (response.ok) {
         Swal.fire({

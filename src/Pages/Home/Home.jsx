@@ -15,7 +15,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://server-side-puce-alpha.vercel.app/items"
+          "https://server-side-puce-alpha.vercel.app/"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");

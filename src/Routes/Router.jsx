@@ -164,7 +164,7 @@ export const router = createBrowserRouter([
         path: "updateParcel",
         element: <UpdateParcel />,
         // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/parcels/${params.id}`),
+        //   fetch(`https://server-side-puce-alpha.vercel.app/parcels/${params.id}`),
       },
     ],
   },
