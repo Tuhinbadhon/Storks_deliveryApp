@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ReviewModal from "./ReviewModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -15,16 +15,25 @@ const MyParcels = () => {
   const [currentDeliveryManId, setCurrentDeliveryManId] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch parcels data using React Query
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${day}-${month}-${year}`;
+  };
+
   const {
     data: parcels = [],
     refetch,
     isLoading,
     isError,
+    error,
   } = useQuery({
     queryKey: ["parcels", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/parcels/user/${user.email}`);
+      console.log(res.data);
       return res.data;
     },
     onError: (error) => {
@@ -37,10 +46,6 @@ const MyParcels = () => {
     },
   });
 
-  const handleUpdate = (parcelId) => {
-    navigate(`/update-parcel/${parcelId}`);
-  };
-
   const handleCancel = async (parcelId) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -52,7 +57,7 @@ const MyParcels = () => {
     if (result.isConfirmed) {
       try {
         await axiosSecure.patch(`/parcels/cancel/${parcelId}`);
-        refetch(); // Refetch parcels after cancel
+        refetch();
         Swal.fire("Cancelled!", "Your booking has been cancelled.", "success");
       } catch (error) {
         console.error("Error cancelling booking:", error);
@@ -80,12 +85,14 @@ const MyParcels = () => {
   }
 
   if (isError) {
-    return <div>Error loading parcels.</div>;
+    return <div>Error loading parcels: {error.message}</div>;
   }
 
   return (
     <div className="my-10 p-2">
-      <h2 className="text-2xl font-bold mb-4">My Parcels</h2>
+      <h2 className="text-2xl font-bold text-center underline mb-4">
+        My Parcels
+      </h2>
 
       <div className="mb-4">
         <label htmlFor="statusFilter" className="mr-2">
@@ -96,6 +103,7 @@ const MyParcels = () => {
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
           className="select select-bordered"
+          aria-label="Filter parcels by status"
         >
           <option value="">All</option>
           <option value="pending">Pending</option>
@@ -110,36 +118,39 @@ const MyParcels = () => {
         <table className="table table-auto w-full">
           <thead>
             <tr>
+              <th>#</th>
               <th>Parcel Type</th>
               <th>Requested Delivery Date</th>
               <th>Approximate Delivery Date</th>
               <th>Booking Date</th>
-              <th>Delivery Men ID</th>
+              <th>Delivery Man ID</th>
               <th>Booking Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {filteredParcels.length > 0 ? (
-              filteredParcels.map((parcel) => (
+              filteredParcels.map((parcel, idx) => (
                 <tr key={parcel._id}>
-                  <td>{parcel.type}</td>
-                  <td>{parcel.requestedDeliveryDate}</td>
-                  <td>{parcel.approximateDeliveryDate}</td>
-                  <td>{parcel.bookingDate}</td>
+                  <td>{idx + 1}</td>
+                  <td>{parcel.parcelType}</td>
+                  <td>{formatDate(parcel.requestedDeliveryDate)}</td>
+                  <td>{parcel.approximateDeliveryDate || "Not Assigned"}</td>
+                  <td>{formatDate(parcel.bookingDate)}</td>
                   <td>{parcel.deliveryManId || "Not Assigned"}</td>
                   <td>{parcel.status}</td>
-                  <td>
-                    <button
-                      onClick={() => handleUpdate(parcel._id)}
-                      className="btn btn-primary mr-2"
-                      disabled={parcel.status !== "pending"}
-                    >
-                      Update
-                    </button>
+                  <td className="flex flex-col gap-2">
+                    <Link to={`/updateParcel`}>
+                      <button
+                        className="btn btn-primary"
+                        disabled={parcel.status !== "pending"}
+                      >
+                        Update
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleCancel(parcel._id)}
-                      className="btn btn-secondary mr-2"
+                      className="btn btn-secondary"
                       disabled={parcel.status !== "pending"}
                     >
                       Cancel
@@ -149,18 +160,20 @@ const MyParcels = () => {
                         onClick={() =>
                           openReviewModal(parcel._id, parcel.deliveryManId)
                         }
-                        className="btn btn-accent mr-2"
+                        className="btn btn-accent"
                       >
                         Review
                       </button>
                     )}
-                    <button className="btn btn-success">Pay</button>
+                    {parcel.status === "pending" && (
+                      <button className="btn btn-success">Pay</button>
+                    )}
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="text-center">
+                <td colSpan="8" className="text-center">
                   No parcels found.
                 </td>
               </tr>

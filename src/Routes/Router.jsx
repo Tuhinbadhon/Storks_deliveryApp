@@ -20,6 +20,8 @@ import BookAParcel from "../Pages/Dashboard/BookAParcel";
 import MyParcel from "../Pages/Dashboard/MyParcel";
 import MyProfile from "../Pages/Dashboard/MyProfile";
 import UpdateProfile from "../Pages/Dashboard/UpdateProfile";
+import UpdateParcel from "../Pages/Dashboard/UpdateParcel";
+import DeliveryManRoute from "../PrivetRoutes/DeliveryManRoute";
 
 export const router = createBrowserRouter([
   {
@@ -96,27 +98,51 @@ export const router = createBrowserRouter([
       // },
       {
         path: "users",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "statistics",
-        element: <Statistics />,
+        element: (
+          <AdminRoute>
+            <Statistics />
+          </AdminRoute>
+        ),
       },
       {
         path: "allparcels",
-        element: <AllParcel />,
+        element: (
+          <AdminRoute>
+            <AllParcel />
+          </AdminRoute>
+        ),
       },
       {
         path: "all_delivery_men",
-        element: <AllDeliveryMan />,
+        element: (
+          <AdminRoute>
+            <AllDeliveryMan />
+          </AdminRoute>
+        ),
       },
       {
         path: "deliveryList",
-        element: <MyDeliveryList />,
+        element: (
+          <DeliveryManRoute>
+            <MyDeliveryList />
+          </DeliveryManRoute>
+        ),
       },
       {
         path: "myReviews",
-        element: <MyReview />,
+        element: (
+          <DeliveryManRoute>
+            <MyReview />
+          </DeliveryManRoute>
+        ),
       },
       {
         path: "bookAParcel",
@@ -133,6 +159,12 @@ export const router = createBrowserRouter([
       {
         path: "updateprofile",
         element: <UpdateProfile />,
+      },
+      {
+        path: "updateParcel",
+        element: <UpdateParcel />,
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/parcels/${params.id}`),
       },
     ],
   },

@@ -35,7 +35,8 @@
     "sort-by": "^1.2.0",
     "styled-components": "^6.1.11",
     "sweetalert2": "^11.11.0",
-    "swiper": "^11.1.4"
+    "swiper": "^11.1.4",
+    "use-history": "^1.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

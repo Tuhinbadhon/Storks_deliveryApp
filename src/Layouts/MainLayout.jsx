@@ -11,7 +11,7 @@ const MainLayout = () => {
     location.pathname.includes("registration");
   return (
     <div className="">
-      {noHeaderFooter || <Navbar />}
+      <div className="">{noHeaderFooter || <Navbar />}</div>
       <Outlet />
       <TopArrow />
       {noHeaderFooter || <Footer />}

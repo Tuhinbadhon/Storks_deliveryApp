@@ -199,6 +199,11 @@ const BookAParcel = () => {
             name="requestedDeliveryDate"
             value={formData.requestedDeliveryDate}
             onChange={handleChange}
+            min={
+              new Date(new Date().setDate(new Date().getDate() + 1))
+                .toISOString()
+                .split("T")[0]
+            } // Setting min to tomorrow's date
             required
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
           />
@@ -243,7 +248,7 @@ const BookAParcel = () => {
         </div>
         <button
           type="submit"
-          className="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#404345] hover:bg-success  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
           Book
         </button>

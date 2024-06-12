@@ -11,10 +11,14 @@ import { MdAppRegistration } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import logo from "../../../public/logo.png";
+import useAdmin from "../../hooks/useAdmin";
+import useDeliveryMan from "../../hooks/useDeliveryMan";
 
 defineElement(lottie.loadAnimation);
 
 const Navbar = () => {
+  const [isAdmin] = useAdmin();
+  const [isDeliveryMan] = useDeliveryMan();
   const { user, signOutUser } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -50,19 +54,21 @@ const Navbar = () => {
         </Link>
       </li>
 
-      <li>
-        <Link to="/dashboard" onClick={() => setIsDropdownOpen(false)}>
-          Dashboard
-        </Link>
-      </li>
-      <li>
-        <Link to="/" onClick={() => setIsDropdownOpen(false)}>
-          <button className="flex justify-center  items-center">
-            <IoMdNotificationsOutline className="text-xl" />
-            <sup className=" text-sm text-white  border-none">1</sup>
-          </button>
-        </Link>
-      </li>
+      {user && isAdmin && (
+        <li>
+          <Link to="/dashboard/statistics">Dashboard</Link>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
+      {!user && isDeliveryMan && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
 
       {user ? (
         <>
@@ -124,7 +130,7 @@ const Navbar = () => {
   return (
     <div>
       <ToastContainer />
-      <div className="navbar fixed z-10 bg-opacity-60 max-w-screen-xl mx-auto text-white bg-black">
+      <div className="navbar  fixed z-10 bg-opacity-60 max-w-screen-xl mx-auto text-white bg-black">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -171,6 +177,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end flex gap-2">
+          <div>
+            <button className="flex justify-center  items-center">
+              <IoMdNotificationsOutline className="text-2xl" />
+            </button>
+          </div>
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input
@@ -230,15 +241,40 @@ const Navbar = () => {
                     <li>
                       <div className="uppercase">{user.displayName}</div>
                     </li>
-                    <li>
-                      <Link
-                        to="/dashboard"
-                        onClick={() => setIsDropdownOpen(false)}
-                        className="hover:bg-black hover:bg-opacity-60"
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
+                    {user && isAdmin && (
+                      <li>
+                        <Link
+                          to="/dashboard/statistics"
+                          onClick={() => setIsDropdownOpen(false)}
+                          className="hover:bg-black hover:bg-opacity-60"
+                        >
+                          Dashboard
+                        </Link>
+                      </li>
+                    )}
+                    {user && !isAdmin && (
+                      <li>
+                        <Link
+                          to="/dashboard"
+                          onClick={() => setIsDropdownOpen(false)}
+                          className="hover:bg-black hover:bg-opacity-60"
+                        >
+                          Dashboard
+                        </Link>
+                      </li>
+                    )}
+                    {!user && isDeliveryMan && (
+                      <li>
+                        <Link
+                          to="/dashboard"
+                          onClick={() => setIsDropdownOpen(false)}
+                          className="hover:bg-black hover:bg-opacity-60"
+                        >
+                          Dashboard
+                        </Link>
+                      </li>
+                    )}
+
                     <li className="mt-2">
                       <button
                         className="hover:bg-black hover:bg-opacity-60 block text-center "
@@ -264,13 +300,13 @@ const Navbar = () => {
                   Login
                 </button>
               </Link>
-              <Link to="/registration">
+              {/* <Link to="/registration">
                 <button className="btn max-[450px]:py-1 max-[450px]:px-2 ">
                   {" "}
                   <MdAppRegistration className="max-[450px]:hidden" />
                   Register
                 </button>
-              </Link>
+              </Link> */}
             </>
           )}
         </div>
