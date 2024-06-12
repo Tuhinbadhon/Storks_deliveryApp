@@ -48,6 +48,7 @@ const Registration = () => {
     const photoURL = e.target.photoURL.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const role = e.target.role.value;
 
     if (!/(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}/.test(password)) {
       const errorMessage =
@@ -61,7 +62,7 @@ const Registration = () => {
       return;
     }
 
-    createUser(email, password)
+    createUser(email, password, role)
       .then((result) => {
         Swal.fire({
           text: "Successfully Registered",
@@ -72,7 +73,7 @@ const Registration = () => {
           photoURL: photoURL,
         })
           .then(() => {
-            const userinfo = { name, email };
+            const userinfo = { name, email, role };
             axiosPublic.post("/users", userinfo).then((res) => {
               if (res.data.insertedID) {
                 console.log("User added to the database");
@@ -199,6 +200,23 @@ const Registration = () => {
                   >
                     {showPass ? <FaEyeSlash /> : <FaEye />}
                   </span>
+                </div>
+                <div className="form-control md:w-1/2 ">
+                  <label className="label">
+                    <span className="label-text block font-semibold text-sm">
+                      {" "}
+                      User Type
+                    </span>
+                  </label>
+                  <label className="input-group ">
+                    <select
+                      name="role"
+                      className="input input-bordered"
+                      required
+                    >
+                      <option value="user">User</option>
+                    </select>
+                  </label>
                 </div>
               </div>
               <div className="space-y-2">
