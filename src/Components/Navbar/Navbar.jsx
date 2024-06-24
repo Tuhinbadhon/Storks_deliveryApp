@@ -13,13 +13,15 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import logo from "../../../public/logo.png";
 import useAdmin from "../../hooks/useAdmin";
 import useDeliveryMan from "../../hooks/useDeliveryMan";
+import { FaGooglePlay, FaPlayCircle } from "react-icons/fa";
+import { CiLock, CiPlay1 } from "react-icons/ci";
 
 defineElement(lottie.loadAnimation);
 
 const Navbar = () => {
-  const [isAdmin] = useAdmin();
-  const [isDeliveryMan] = useDeliveryMan();
-  const { user, signOutUser } = useContext(AuthContext);
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isDeliveryMan, isDeliveryManLoading] = useDeliveryMan();
+  const { user, signOutUser, loading: userLoading } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [Open, setOpen] = useState(false);
@@ -30,6 +32,13 @@ const Navbar = () => {
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
+  const handleToogle = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
     setIsDropdownOpen(!isDropdownOpen);
@@ -38,62 +47,54 @@ const Navbar = () => {
     setOpen(!Open);
     setDropdownOpen(!DropdownOpen);
   };
-  const handleToogle = (e) => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
-
+  if (isAdminLoading || isDeliveryManLoading || userLoading) {
+    return (
+      <div className="navbar py-3  fixed z-10 bg-opacity-60 max-w-screen-xl mx-auto text-white bg-black">
+        <progress className="progress w-56"></progress>
+      </div>
+    );
+  }
   const navlink = (
     <>
-      <li className="">
-        <Link to="/" onClick={() => setIsDropdownOpen(false)}>
+      <li>
+        <Link
+          to="/"
+          className="block hover:bg-black hover:bg-opacity-20 hover:border"
+          onClick={() => setIsDropdownOpen(false)}
+        >
           Home
         </Link>
       </li>
 
       {user && isAdmin && (
         <li>
-          <Link to="/dashboard/statistics">Dashboard</Link>
+          <Link
+            to="/dashboard/statistics"
+            className="block hover:bg-black hover:bg-opacity-20 hover:border"
+          >
+            Dashboard
+          </Link>
         </li>
       )}
-      {user && !isAdmin && (
+      {user && !isAdmin && !isDeliveryMan && (
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link
+            to="/dashboard/myProfile"
+            className="hover:bg-black hover:bg-opacity-20 hover:border"
+          >
+            Dashboard
+          </Link>
         </li>
       )}
-      {!user && isDeliveryMan && (
+      {user && isDeliveryMan && (
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link
+            to="/dashboard/deliveryList"
+            className="hover:bg-black hover:bg-opacity-20 hover:border"
+          >
+            Dashboard
+          </Link>
         </li>
-      )}
-
-      {user ? (
-        <>
-          {/* <li>
-            <Link
-              to="/createassignment"
-              onClick={() => setIsDropdownOpen(false)}
-            >
-              Create Assignments
-            </Link>
-          </li>
-          <li>
-            <Link to="/pending" onClick={() => setIsDropdownOpen(false)}>
-              Pending Assignments
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/profile" onClick={() => setIsDropdownOpen(false)}>
-              View Profile
-            </Link>
-          </li> */}
-        </>
-      ) : (
-        ""
       )}
     </>
   );
@@ -130,7 +131,7 @@ const Navbar = () => {
   return (
     <div>
       <ToastContainer />
-      <div className="navbar  fixed z-10 bg-opacity-60 max-w-screen-xl mx-auto text-white bg-black">
+      <div className="navbar py-3  fixed z-10 bg-opacity-60 max-w-screen-xl mx-auto text-white bg-black">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -148,7 +149,7 @@ const Navbar = () => {
             {isDropdownOpen && (
               <ul
                 tabIndex={0}
-                className="menu  menu-sm dropdown-content mt-2 z-[10] p-2 shadow bg-black bg-opacity-60 rounded-box w-52 font-semibold "
+                className="menu  menu-sm dropdown-content mt-2 z-[10] p-2 shadow bg-black bg-opacity-60 rounded-lg w-52 font-semibold "
               >
                 {navlink}
               </ul>
@@ -176,7 +177,7 @@ const Navbar = () => {
             {navlink}
           </ul>
         </div>
-        <div className="navbar-end flex gap-2">
+        <div className="navbar-end flex gap-4">
           <div>
             <button className="flex justify-center  items-center">
               <IoMdNotificationsOutline className="text-2xl" />
@@ -241,34 +242,32 @@ const Navbar = () => {
                     <li>
                       <div className="uppercase">{user.displayName}</div>
                     </li>
+
                     {user && isAdmin && (
                       <li>
                         <Link
                           to="/dashboard/statistics"
-                          onClick={() => setIsDropdownOpen(false)}
-                          className="hover:bg-black hover:bg-opacity-60"
+                          className="block hover:bg-black hover:bg-opacity-60 "
                         >
                           Dashboard
                         </Link>
                       </li>
                     )}
-                    {user && !isAdmin && (
+                    {user && !isAdmin && !isDeliveryMan && (
                       <li>
                         <Link
-                          to="/dashboard"
-                          onClick={() => setIsDropdownOpen(false)}
-                          className="hover:bg-black hover:bg-opacity-60"
+                          to="/dashboard/myProfile"
+                          className="hover:bg-black hover:bg-opacity-60 "
                         >
                           Dashboard
                         </Link>
                       </li>
                     )}
-                    {!user && isDeliveryMan && (
+                    {user && isDeliveryMan && (
                       <li>
                         <Link
-                          to="/dashboard"
-                          onClick={() => setIsDropdownOpen(false)}
-                          className="hover:bg-black hover:bg-opacity-60"
+                          to="/dashboard/deliveryList"
+                          className="hover:bg-black hover:bg-opacity-60 "
                         >
                           Dashboard
                         </Link>
@@ -289,14 +288,14 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <div className="btn btn-ghost btn-circle avatar">
-                {/* Display lordicon if the user is not logged in */}
+              {/* <div className="btn btn-ghost btn-circle avatar">
+                
                 {!user}
-              </div>
+              </div> */}
               <Link to="/login">
-                <button className="btn max-[450px]:py-1 max-[450px]:px-2 ">
+                <button className="btn  rounded-3xl max-[450px]:py-1 text-blue-400 bg-black border-none bg-opacity-60 hover:bg-black hover:bg-opacity-40 hover:text-red-400 max-[450px]:px-2 ">
                   {" "}
-                  <LuLogIn className="max-[450px]:hidden" />
+                  <CiLock className="text-lg" />
                   Login
                 </button>
               </Link>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-  baseURL: "https://server-side-puce-alpha.vercel.app", // Make sure this is your API base URL
+  baseURL: "https://storks-assignment12.vercel.app", // Make sure this is your API base URL
 });
 
 const useAxiosSecure = () => {
@@ -31,8 +31,8 @@ const useAxiosSecure = () => {
       // console.log("staus error in the interceptor ", status);
       // for 401 and 403 logout the user and move to user to login
       if (status === 401 || status === 403) {
-        await signOutUser();
-        navigate("/login");
+        // await signOutUser();
+        // navigate("/login");
       }
       return Promise.reject(error);
     }

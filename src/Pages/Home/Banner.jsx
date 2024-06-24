@@ -22,10 +22,10 @@ const Banner = () => {
   return (
     <div className="  mx-auto overflow-auto">
       <Swiper
-        // autoplay={{
-        //   delay: 5000, // 1000 milliseconds = 1 second
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 5000, // 1000 milliseconds = 1 second
+          disableOnInteraction: false,
+        }}
         speed={1500}
         effect={"fade"}
         slidesPerView={1}

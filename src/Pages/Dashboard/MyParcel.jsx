@@ -1,20 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import ReviewModal from "./ReviewModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const MyParcels = () => {
+  const modalRef = useRef(null);
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [filterStatus, setFilterStatus] = useState("");
-  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [currentParcelId, setCurrentParcelId] = useState(null);
   const [currentDeliveryManId, setCurrentDeliveryManId] = useState(null);
   const navigate = useNavigate();
-
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -73,7 +73,7 @@ const MyParcels = () => {
   const openReviewModal = (parcelId, deliveryManId) => {
     setCurrentParcelId(parcelId);
     setCurrentDeliveryManId(deliveryManId);
-    setIsReviewModalOpen(true);
+    modalRef.current.showModal();
   };
 
   const filteredParcels = filterStatus
@@ -88,8 +88,33 @@ const MyParcels = () => {
     return <div>Error loading parcels: {error.message}</div>;
   }
 
+  const handleReviewSubmit = async (formData) => {
+    try {
+      const response = await axiosSecure.post("/reviews", {
+        ...formData,
+        userId: user._id, // Add user ID
+      });
+      console.log(response.data);
+      Swal.fire("Success!", "Your review has been submitted.", "success");
+      modalRef.current.close(); // Close modal using ref
+      refetch(); // refetch parcels after successful review submission
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      Swal.fire(
+        "Error",
+        "Failed to submit review. Please try again later.",
+        "error"
+      );
+    }
+  };
+  const helmetContext = {};
   return (
-    <div className="my-10 p-2">
+    <div className="p-2">
+      <HelmetProvider context={helmetContext}>
+        <Helmet>
+          <title>My Parcel</title>
+        </Helmet>
+      </HelmetProvider>
       <h2 className="text-2xl font-bold text-center underline mb-4">
         My Parcels
       </h2>
@@ -107,7 +132,7 @@ const MyParcels = () => {
         >
           <option value="">All</option>
           <option value="pending">Pending</option>
-          <option value="on the way">On the way</option>
+          <option value="On The Way">On the way</option>
           <option value="delivered">Delivered</option>
           <option value="returned">Returned</option>
           <option value="cancelled">Cancelled</option>
@@ -117,7 +142,7 @@ const MyParcels = () => {
       <div className="overflow-x-auto">
         <table className="table table-auto w-full">
           <thead>
-            <tr>
+            <tr className="text-center">
               <th>#</th>
               <th>Parcel Type</th>
               <th>Requested Delivery Date</th>
@@ -131,16 +156,16 @@ const MyParcels = () => {
           <tbody>
             {filteredParcels.length > 0 ? (
               filteredParcels.map((parcel, idx) => (
-                <tr key={parcel._id}>
+                <tr key={parcel._id} className="text-center">
                   <td>{idx + 1}</td>
                   <td>{parcel.parcelType}</td>
                   <td>{formatDate(parcel.requestedDeliveryDate)}</td>
                   <td>{parcel.approximateDeliveryDate || "Not Assigned"}</td>
-                  <td>{formatDate(parcel.bookingDate)}</td>
+                  <td>{parcel.bookingDate}</td>
                   <td>{parcel.deliveryManId || "Not Assigned"}</td>
                   <td>{parcel.status}</td>
                   <td className="flex flex-col gap-2">
-                    <Link to={`/updateParcel`}>
+                    <Link to={`/dashboard/updateParcel`}>
                       <button
                         className="btn btn-primary"
                         disabled={parcel.status !== "pending"}
@@ -165,8 +190,19 @@ const MyParcels = () => {
                         Review
                       </button>
                     )}
-                    {parcel.status === "pending" && (
-                      <button className="btn btn-success">Pay</button>
+                    {parcel.status === "pending" ? (
+                      <Link to="/dashboard/payment">
+                        <button className="btn btn-success w-full text-white">
+                          Pay
+                        </button>{" "}
+                      </Link>
+                    ) : (
+                      <button
+                        disabled
+                        className="btn btn-success w-full text-white"
+                      >
+                        Pay
+                      </button>
                     )}
                   </td>
                 </tr>
@@ -182,13 +218,33 @@ const MyParcels = () => {
         </table>
       </div>
 
-      {isReviewModalOpen && (
-        <ReviewModal
-          parcelId={currentParcelId}
-          deliveryManId={currentDeliveryManId}
-          onClose={() => setIsReviewModalOpen(false)}
-        />
-      )}
+      {/* Review Modal using ref */}
+      <dialog
+        id="my_modal_5"
+        ref={modalRef}
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Hello!</h3>
+          <p className="py-4">
+            Press ESC key or click the button below to close
+          </p>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* Pass onClose prop to ReviewModal component */}
+              <ReviewModal
+                parcelId={currentParcelId}
+                deliveryManId={currentDeliveryManId}
+                onClose={() => modalRef.current.close()} // Close modal using ref
+                onSubmit={handleReviewSubmit}
+                userName={user.name}
+                userImage={user.avatar}
+              />
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

@@ -49,6 +49,7 @@ const Registration = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const role = e.target.role.value;
+    const phoneNumber = e.target.phoneNumber.value;
 
     if (!/(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}/.test(password)) {
       const errorMessage =
@@ -73,7 +74,7 @@ const Registration = () => {
           photoURL: photoURL,
         })
           .then(() => {
-            const userinfo = { name, email, role };
+            const userinfo = { name, email, role, phoneNumber };
             axiosPublic.post("/users", userinfo).then((res) => {
               if (res.data.insertedID) {
                 console.log("User added to the database");
@@ -113,10 +114,10 @@ const Registration = () => {
 
   return (
     <div>
-      <div className=" max-[450px]:h-svh  py-10 p-5 bg-gradient-to-r from-pink-400  to-purple-500 ">
+      <div className=" max-[450px]:h-max  py-10 p-5 bg-gradient-to-r from-pink-400  to-purple-500 ">
         <HelmetProvider context={helmetContext}>
           <Helmet>
-            <title>Sign Up</title>
+            <title>STORKS | Sign Up</title>
           </Helmet>
         </HelmetProvider>
         <div className="mx-auto  bg-white w-full max-w-md p-10 rounded-2xl shadow max-[450px]:p-8">
@@ -163,6 +164,18 @@ const Registration = () => {
                   name="photoURL"
                   placeholder="http://www......"
                   className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="text" className="block font-semibold text-sm">
+                  Phone No.
+                </label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Enter Your Phone No."
+                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400 "
+                  required
                 />
               </div>
               <div className="space-y-2">

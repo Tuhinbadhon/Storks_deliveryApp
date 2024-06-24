@@ -18,7 +18,8 @@ const TopDeliveryMan = () => {
           data-aos-delay="200"
           className="text-lg mt-3 mx-5"
         >
-          Our top delivery man ensures your packages arrive
+          Our <span className="text-green-500">Top</span> delivery man ensures
+          your packages arrive
           <span className="font-bold text-orange-500"> safely </span> and
           <span className="font-bold text-orange-500"> swiftly</span> in every
           time.
@@ -31,11 +32,11 @@ const TopDeliveryMan = () => {
         className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-5"
       >
         <div className=" flex flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className="p-5 ">
+          <figure className="p-5 rounded-full shadow-lg border-4 border-gray-300">
             <img
-              src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+              src="https://i.ibb.co/xjsyCLx/leo.webp"
               alt="Album"
-              className="rounded-full"
+              className="rounded-full w-52 h-52 object-cover"
             />
           </figure>
           <div className="p-5 mb-5">
@@ -43,19 +44,20 @@ const TopDeliveryMan = () => {
               Abdul Jobbar{" "}
               <sup>
                 <span className="flex justify-center items-center">
-                  5<FaStar />{" "}
+                  4.7
+                  <FaStar />{" "}
                 </span>
               </sup>
             </h2>
-            <p className="font-bold"> Percel delivered:300</p>
+            <p className="font-bold"> Percel delivered:30</p>
           </div>
         </div>
         <div className=" flex flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className="p-5 ">
+          <figure className="p-5 rounded-full shadow-lg border-4 border-gray-300">
             <img
-              src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+              src="https://i.ibb.co/0yqCgPh/kate.jpg"
               alt="Album"
-              className="rounded-full"
+              className="rounded-full w-52 h-52 object-cover"
             />
           </figure>
           <div className="p-5 mb-5">
@@ -63,19 +65,20 @@ const TopDeliveryMan = () => {
               Abdul Jobbar{" "}
               <sup>
                 <span className="flex justify-center items-center">
-                  5<FaStar />{" "}
+                  4.5
+                  <FaStar />{" "}
                 </span>
               </sup>
             </h2>
-            <p className="font-bold"> Percel delivered:300</p>
+            <p className="font-bold"> Percel delivered:20</p>
           </div>
         </div>
         <div className=" flex flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className="p-5 ">
+          <figure className="p-5 rounded-full shadow-lg border-4 border-gray-300">
             <img
-              src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+              src="https://i.ibb.co/FKXPvRS/image11.jpg"
               alt="Album"
-              className="rounded-full"
+              className="rounded-full w-52 h-52 object-cover"
             />
           </figure>
           <div className="p-5 mb-5">
@@ -83,11 +86,12 @@ const TopDeliveryMan = () => {
               Abdul Jobbar{" "}
               <sup>
                 <span className="flex justify-center items-center">
-                  5<FaStar />{" "}
+                  4.0
+                  <FaStar />{" "}
                 </span>
               </sup>
             </h2>
-            <p className="font-bold"> Percel delivered:300</p>
+            <p className="font-bold"> Percel delivered:10</p>
           </div>
         </div>
       </div>

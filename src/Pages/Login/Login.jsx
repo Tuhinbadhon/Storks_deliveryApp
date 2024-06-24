@@ -186,10 +186,10 @@ const Login = () => {
   // };
 
   return (
-    <div className=" py-10 max-[450px]:h-svh  bg-gradient-to-r from-pink-400  to-purple-500  p-5">
+    <div className=" py-10 max-[450px]:h-svh max-[450px]:content-center  bg-gradient-to-r from-pink-400  to-purple-500  p-5">
       <HelmetProvider context={helmetContext}>
         <Helmet>
-          <title>Login</title>
+          <title>STORKS | Login</title>
         </Helmet>
       </HelmetProvider>
 
@@ -275,14 +275,14 @@ const Login = () => {
           Or Sign Up Using
         </p>
         <div className=" flex justify-center gap-2 items-baseline  space-y-4">
-          <button
+          {/* <button
             onClick={facebookLoginHandler}
             aria-label="Login with GitHub"
             role="button"
             className="btn  bg-[#3d5b99]  flex items-center justify-center  p-4 space-x-4 border rounded-3xl focus:ring-2 focus:ring-offset-1 dark:border-gray-100 focus:dark:ring-violet-100"
           >
             <FaFacebookF className="text-white text-xl" />
-          </button>
+          </button> */}
           <button
             onClick={twitterHandler}
             aria-label="Login with GitHub"

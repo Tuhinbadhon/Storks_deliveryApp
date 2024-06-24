@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateBooking = () => {
   const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
   const [parcel, setParcel] = useState({});
   const [formData, setFormData] = useState({});
 
@@ -24,7 +26,7 @@ const UpdateBooking = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.patch(`/parcels/update/${id}`, formData).then((res) => {
+    axiosSecure.patch(`/parcels/update/${id}`, formData).then((res) => {
       Swal.fire("Updated!", "Your parcel booking has been updated.", "success");
     });
   };

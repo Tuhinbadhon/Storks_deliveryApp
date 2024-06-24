@@ -1,37 +1,58 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { AuthContext } from "../../Provider/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const result = await axios.get(`/reviews/deliveryMan/${user.id}`);
-      setReviews(result.data);
+      try {
+        const res = await axiosSecure.get(`/reviews/deliveryMan/${user.id}`);
+        setReviews(res.data);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
     };
     fetchReviews();
-  }, [user.id]);
+  }, [user.id, axiosSecure]);
 
   return (
     <div>
-      <h2>My Reviews</h2>
-      <div className="reviews">
-        {reviews.map((review, index) => (
-          <div key={index} className="review-card">
-            <p>
-              <strong>{review.name}</strong>
-            </p>
-            <img
-              src={review.image}
-              alt="User"
-              className="w-16 h-16 rounded-full"
-            />
-            <p>Rating: {review.rating}/5</p>
-            <p>{review.feedback}</p>
-          </div>
-        ))}
+      <h2 className="text-2xl font-bold text-center underline mb-4">
+        My Reviews
+      </h2>
+      <div className="overflow-x-auto">
+        <table className="table table-auto w-full">
+          <thead>
+            <tr>
+              <th>User Name</th>
+              <th>Rating</th>
+              <th>Feedback</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reviews.length > 0 ? (
+              reviews.map((review, idx) => (
+                <tr key={idx}>
+                  <td>{review.userName}</td>
+                  <td>{review.rating}</td>
+                  <td>{review.feedback}</td>
+                  <td>{new Date(review.date).toLocaleDateString()}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="text-center">
+                  No reviews found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

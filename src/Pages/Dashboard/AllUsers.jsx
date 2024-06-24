@@ -1,21 +1,35 @@
-import { FaTrashAlt, FaUsers } from "react-icons/fa";
-import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 5;
-
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
-      return res.data;
+      // Fetch parcels separately
+      const parcelsRes = await axiosSecure.get("/parcels");
+
+      // Map users to include parcel data
+      return res.data.map((user) => {
+        const userParcels = parcelsRes.data.filter(
+          (parcel) => parcel.email === user.email
+        );
+        return {
+          ...user,
+          totalSpent: userParcels.reduce(
+            (acc, parcel) => acc + parcel.price,
+            0
+          ),
+          parcelsBooked: userParcels.length,
+        };
+      });
     },
   });
 
@@ -81,9 +95,14 @@ const AllUsers = () => {
       setCurrentPage(currentPage - 1);
     }
   };
-
+  const helmetContext = {};
   return (
     <div>
+      <HelmetProvider context={helmetContext}>
+        <Helmet>
+          <title>Dashboard | All Users</title>
+        </Helmet>
+      </HelmetProvider>
       <div className="flex justify-evenly my-4">
         <h2 className="text-3xl underline mb-5 font-semibold">
           All Users-{users.length}
@@ -107,9 +126,9 @@ const AllUsers = () => {
               <tr key={user._id}>
                 <th>{indexOfFirstUser + index + 1}</th>
                 <td>{user.name}</td>
-                <td>00000</td>
-                <td>0000</td>
-                <td>demo100</td>
+                <td>{user.phoneNumber}</td>
+                <td>{user.parcelsBooked}</td>
+                <td>{user.totalSpent}</td>
                 <td>
                   {user.role === "Delivery-Man" ? (
                     <h2 className="font-bold text-green-500">Delivery Man</h2>

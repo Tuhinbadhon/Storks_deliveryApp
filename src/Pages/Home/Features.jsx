@@ -1,21 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaRocket, FaShippingFast, FaUserTie } from "react-icons/fa";
 import { MdOutlineSecurity } from "react-icons/md";
 import { RxRocket } from "react-icons/rx";
 import { TbWorldCheck } from "react-icons/tb";
 import { CiDeliveryTruck } from "react-icons/ci";
-import CountUp, { useCountUp } from "react-countup";
+import CountUp from "react-countup";
+import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Features = () => {
-  useCountUp({
-    ref: "counter",
-    end: 1234567,
-    enableScrollSpy: true,
-    scrollSpyDelay: 1000,
-  });
+  const [parcels, setParcels] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const axiosSecure = useAxiosSecure();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const parcelsResponse = await axiosSecure.get("/parcels");
+        const usersResponse = await axiosSecure.get("/users");
+
+        setParcels(parcelsResponse.data);
+        setUsers(usersResponse.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const totalParcelsBooked = parcels.length;
+  const totalParcelsDelivered = parcels.filter(
+    (parcel) => parcel.status.toLowerCase() === "delivered".toLowerCase()
+  ).length;
+
+  const totalUsers = users.length;
+
+  if (isLoading) return <div></div>;
+
+  if (error) return <div>Error loading parcels or users: {error}</div>;
+
   return (
     <div className="lg:mx-24 mx-5">
-      <div className=" text-center mt-20">
+      <div className="text-center mt-20">
         <h2
           data-aos="fade-up"
           data-aos-duration="2000"
@@ -41,13 +71,13 @@ const Features = () => {
         data-aos="fade-up"
         data-aos-duration="2000"
         data-aos-delay="300"
-        className=" mt-7 grid grid-cols-1 md:grid-cols-3 gap-5"
+        className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-5"
       >
-        <div className="card p-5  lg:card-side bg-base-100 shadow-xl">
+        <div className="card p-5 lg:card-side bg-base-100 shadow-xl">
           <div className="p-4 justify-center items-center flex">
-            <RxRocket className="w-20 text-gray-300 h-20  " />
+            <RxRocket className="w-20 text-gray-300 h-20" />
           </div>
-          <div className="flex flex-col max-[450px]:mt-3 justify-center ">
+          <div className="flex flex-col max-[450px]:mt-3 justify-center">
             <h2 className="text-lg font-bold uppercase mb-2">
               Super Fast Delivery
             </h2>
@@ -57,11 +87,11 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div className="card p-5  lg:card-side bg-base-100 shadow-xl">
+        <div className="card p-5 lg:card-side bg-base-100 shadow-xl">
           <div className="p-4 justify-center items-center flex">
-            <MdOutlineSecurity className="w-20 text-gray-300 h-20  " />
+            <MdOutlineSecurity className="w-20 text-gray-300 h-20" />
           </div>
-          <div className="flex flex-col max-[450px]:mt-3 justify-center ">
+          <div className="flex flex-col max-[450px]:mt-3 justify-center">
             <h2 className="text-lg font-bold uppercase mb-2">Secure Service</h2>
             <p className="text-sm">
               Experience our secure parcel delivery service, providing peace of
@@ -70,13 +100,13 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div className="card p-5  lg:card-side bg-base-100 shadow-xl">
+        <div className="card p-5 lg:card-side bg-base-100 shadow-xl">
           <div className="p-4 justify-center items-center flex">
-            <FaShippingFast className="w-20 text-gray-300 h-20  " />
+            <FaShippingFast className="w-20 text-gray-300 h-20" />
           </div>
-          <div className="flex flex-col max-[450px]:mt-3 justify-center ">
+          <div className="flex flex-col max-[450px]:mt-3 justify-center">
             <h2 className="text-lg font-bold uppercase mb-2">
-              World wide shipping
+              Worldwide Shipping
             </h2>
             <p className="text-sm">
               Explore global possibilities with our world-class shipping
@@ -92,39 +122,46 @@ const Features = () => {
         data-aos="fade-up"
         data-aos-duration="2000"
         data-aos-delay="400"
-        className="mt-2  "
+        className="mt-2"
       >
-        <div className=" grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div className=" p-2   bg-gray-800 shadow-xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="p-2 bg-gray-800 shadow-xl">
             <div className="p-2 justify-center items-center flex">
-              <TbWorldCheck className="w-10 text-gray-300 h-10  " />
+              <TbWorldCheck className="w-10 text-gray-300 h-10" />
             </div>
-            <div className="flex flex-col  max-[450px]:mt-3 justify-center items-center ">
+            <div className="flex flex-col max-[450px]:mt-3 justify-center items-center">
               <h2 className="text-3xl text-orange-500 font-bold uppercase mb-2">
-                +<CountUp start={-875.039} end={100527.012} enableScrollSpy />
-                {/* <CountUp duration={4} start={-875.039} end={100527.012} /> */}
+                <CountUp
+                  start={-875.039}
+                  end={totalParcelsBooked}
+                  enableScrollSpy
+                />
               </h2>
               <p className="text-lg text-white">Parcel Booked</p>
             </div>
           </div>
-          <div className=" p-2 bg-gray-800   shadow-xl">
+          <div className="p-2 bg-gray-800 shadow-xl">
             <div className="p-2 justify-center items-center flex">
-              <CiDeliveryTruck className="w-10 text-gray-300 h-10  " />
+              <CiDeliveryTruck className="w-10 text-gray-300 h-10" />
             </div>
-            <div className="flex flex-col  max-[450px]:mt-3 justify-center items-center ">
+            <div className="flex flex-col max-[450px]:mt-3 justify-center items-center">
               <h2 className="text-3xl text-orange-500 font-bold uppercase mb-2">
-                +<CountUp start={-875.039} end={90527.012} enableScrollSpy />
+                <CountUp
+                  start={-875.039}
+                  end={totalParcelsDelivered}
+                  enableScrollSpy
+                />
               </h2>
               <p className="text-lg text-white">Parcel Delivered</p>
             </div>
           </div>
-          <div className=" p-2 bg-gray-800   shadow-xl">
+          <div className="p-2 bg-gray-800 shadow-xl">
             <div className="p-2 justify-center items-center flex">
-              <FaUserTie className="w-10 text-gray-300 h-10  " />
+              <FaUserTie className="w-10 text-gray-300 h-10" />
             </div>
-            <div className="flex flex-col  max-[450px]:mt-3 justify-center items-center ">
+            <div className="flex flex-col max-[450px]:mt-3 justify-center items-center">
               <h2 className="text-3xl text-orange-500 font-bold uppercase mb-2">
-                +<CountUp start={-875.039} end={180527.012} enableScrollSpy />
+                <CountUp start={-875.039} end={totalUsers} enableScrollSpy />
               </h2>
               <p className="text-lg text-white">Total Users</p>
             </div>

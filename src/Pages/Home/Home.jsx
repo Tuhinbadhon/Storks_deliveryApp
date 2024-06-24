@@ -6,6 +6,7 @@ import { DNA, Radio } from "react-loader-spinner";
 import Banner from "./Banner";
 import Features from "./Features";
 import TopDeliveryMan from "./TopDeliveryMan";
+import FAQ from "./FAQ";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -14,9 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://server-side-puce-alpha.vercel.app/"
-        );
+        const response = await fetch("https://storks-assignment12.vercel.app/");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -57,6 +56,7 @@ const Home = () => {
       <Banner />
       <Features />
       <TopDeliveryMan />
+      <FAQ />
     </div>
   );
 };

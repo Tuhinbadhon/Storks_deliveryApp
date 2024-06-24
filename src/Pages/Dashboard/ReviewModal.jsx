@@ -1,90 +1,105 @@
-import React, { useContext, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../Provider/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const ReviewModal = ({ parcelId, deliveryManId, onClose }) => {
-  const { user } = useContext(AuthContext);
-  const [rating, setRating] = useState(0);
-  const [feedback, setFeedback] = useState("");
+const ReviewModal = ({
+  parcelId,
+  deliveryManId,
+  onClose,
+  userName,
+  userImage,
+}) => {
+  const axiosSecure = useAxiosSecure();
+  const [formData, setFormData] = useState({
+    rating: 0,
+    feedback: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const reviewData = {
-      name: user.displayName,
-      image: user.photoURL,
-      rating,
-      feedback,
-      deliveryManId,
-    };
-
     try {
-      await axios.post(`/parcels/review/${parcelId}`, reviewData);
-      Swal.fire("Review Added!", "Your review has been added.", "success");
-      onClose(); // Close the modal
+      const response = await axiosSecure.post("/reviews", {
+        ...formData,
+        userId: user._id,
+        parcelId,
+        deliveryManId,
+      });
+      console.log(response.data);
+      Swal.fire("Success!", "Your review has been submitted.", "success");
+      onClose(); // Close modal after successful submission
     } catch (error) {
-      Swal.fire("Error!", "There was an error adding your review.", "error");
+      console.error("Error submitting review:", error);
+      Swal.fire(
+        "Error",
+        "Failed to submit review. Please try again later.",
+        "error"
+      );
     }
   };
 
   return (
-    <div className="modal">
+    <div className="modal modal-bottom sm:modal-middle">
       <div className="modal-box">
-        <button
-          onClick={onClose}
-          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-        >
-          ✕
-        </button>
+        <h3 className="font-bold text-lg">Write a Review</h3>
         <form onSubmit={handleSubmit}>
-          <div className="form-control">
-            <label className="label">User’s Name</label>
+          <div className="my-2">
+            <label>User's Name</label>
             <input
               type="text"
-              value={user.displayName}
-              readOnly
+              name="userName"
+              value={userName}
               className="input input-bordered"
+              disabled
             />
           </div>
-          <div className="form-control">
-            <label className="label">User’s Image</label>
-            <img
-              src={user.photoURL}
-              alt="User"
-              className="w-16 h-16 rounded-full"
+          <div className="my-2">
+            <label>User's Image</label>
+            <input
+              type="text"
+              name="userImage"
+              value={userImage}
+              className="input input-bordered"
+              disabled
             />
           </div>
-          <div className="form-control">
-            <label className="label">Rating out of 5</label>
+          <div className="my-2">
+            <label>Rating out of 5</label>
             <input
               type="number"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              max="5"
-              min="0"
+              name="rating"
+              value={formData.rating}
+              onChange={handleChange}
               className="input input-bordered"
+              min="0"
+              max="5"
+              required
             />
           </div>
-          <div className="form-control">
-            <label className="label">Feedback</label>
+          <div className="my-2">
+            <label>Feedback</label>
             <textarea
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
+              name="feedback"
+              value={formData.feedback}
+              onChange={handleChange}
               className="textarea textarea-bordered"
+              rows="4"
+              required
             ></textarea>
           </div>
-          <div className="form-control">
-            <label className="label">Delivery Men’s Id</label>
-            <input
-              type="text"
-              value={deliveryManId}
-              readOnly
-              className="input input-bordered"
-            />
-          </div>
-          <div className="form-control mt-6">
+          <div className="modal-action">
             <button type="submit" className="btn btn-primary">
-              Submit Review
+              Submit
+            </button>
+            <button type="button" className="btn" onClick={onClose}>
+              Cancel
             </button>
           </div>
         </form>

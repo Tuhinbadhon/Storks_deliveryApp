@@ -2,9 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.css"; // Import the Swal CSS
+import { useNavigate } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const BookAParcel = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const initialFormData = {
     name: user.displayName || "",
     email: user.email || "",
@@ -54,7 +57,7 @@ const BookAParcel = () => {
 
     try {
       const response = await fetch(
-        "https://server-side-puce-alpha.vercel.app/parcels",
+        "https://storks-assignment12.vercel.app/parcels",
         {
           method: "POST",
           headers: {
@@ -72,6 +75,7 @@ const BookAParcel = () => {
           text: "Parcel booked successfully!",
           icon: "success",
         });
+        navigate("/dashboard/myParcels");
         setFormData(initialFormData);
       } else {
         throw new Error("Failed to book parcel");
@@ -83,9 +87,15 @@ const BookAParcel = () => {
       });
     }
   };
+  const helmetContext = {};
 
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+      <HelmetProvider context={helmetContext}>
+        <Helmet>
+          <title>Booking Parcel</title>
+        </Helmet>
+      </HelmetProvider>
       <h2 className="text-2xl font-bold text-center mb-6">Book a Parcel</h2>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>

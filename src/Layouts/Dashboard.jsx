@@ -27,6 +27,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import useAdmin from "../hooks/useAdmin";
 import useDeliveryMan from "../hooks/useDeliveryMan";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { GrTransaction } from "react-icons/gr";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -44,9 +46,14 @@ const Dashboard = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
+  const helmetContext = {};
   return (
     <div className="md:flex">
+      <HelmetProvider context={helmetContext}>
+        <Helmet>
+          <title>Dashboard</title>
+        </Helmet>
+      </HelmetProvider>
       {/* Toggle Button for Small Screens */}
       <button className="lg:hidden p-4" onClick={toggleSidebar}>
         <FaList />
@@ -121,6 +128,12 @@ const Dashboard = () => {
                   My Profile
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/paymentHistory">
+                  <GrTransaction />
+                  Payment History
+                </NavLink>
+              </li>
             </>
           )}
           {/* shared nav links */}
@@ -146,7 +159,7 @@ const Dashboard = () => {
       )}
 
       {/* dashboard content */}
-      <div className="flex-1 p-8 lg:ml-5">
+      <div className="flex-1 p-8 overflow-auto lg:ml-5">
         <Outlet></Outlet>
       </div>
     </div>
