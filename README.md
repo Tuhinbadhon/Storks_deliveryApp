@@ -54,3 +54,5 @@
 23. sort-by,
 24. styled-components,
 25. swiper
+26. sweetalert2
+27. daisyui
