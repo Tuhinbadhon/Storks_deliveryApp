@@ -77,7 +77,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/login"
-              className="block hover:bg-black hover:bg-opacity-20 hover:border"
+              className="block lg:hidden hover:bg-black hover:bg-opacity-20 hover:border"
               onClick={() => setIsDropdownOpen(false)}
             >
               Login / Sign Up
@@ -166,7 +166,7 @@ const Navbar = () => {
               isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             } transform transition-transform duration-200 ease-in-out lg:hidden`}
           >
-            <div className="w-64 min-h-screen font-semibold bg-[#6bc6c7]  text-white flex flex-col">
+            <div className="w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#262424]  text-white flex flex-col">
               <div className="flex p-6 items-center justify-between">
                 <h2 className=" text-xl uppercase  ">Storks</h2>
                 <button
@@ -181,7 +181,7 @@ const Navbar = () => {
               </div>
               <ul className="menu p-2 mt-2 z-[10]">{navlink}</ul>
               <div className="flex-grow"></div>
-              <div className="font-semibold p-4 ml-1 ">
+              <div className="mt-auto font-semibold p-4">
                 <p className="text-sm">
                   Copyright © {currentYear} - All right reserved by storks Ltd
                 </p>

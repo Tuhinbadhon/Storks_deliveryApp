@@ -69,7 +69,7 @@ const Dashboard = () => {
 
       {/* dashboard side bar */}
       <div
-        className={`w-64 min-h-screen font-semibold bg-[#82a5a5] text-white fixed lg:relative z-10 lg:z-auto transform ${
+        className={`w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#262424] text-white fixed  z-40  transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 transition-transform duration-200 ease-in-out`}
       >
@@ -82,7 +82,7 @@ const Dashboard = () => {
             <FaTimes />
           </button>
         </div>
-        <ul className="menu min-h-screen p-4">
+        <ul className="menu h-svh overflow-y-auto p-4">
           {isAdmin ? (
             <>
               <li>
@@ -176,7 +176,7 @@ const Dashboard = () => {
       )}
 
       {/* dashboard content */}
-      <div className="flex-1 p-5 overflow-auto  transition-all duration-200 ease-in-out">
+      <div className="flex-1 p-5 lg:ml-[260px] overflow-auto  transition-all duration-200 ease-in-out">
         <Outlet />
       </div>
     </div>
