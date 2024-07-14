@@ -69,7 +69,7 @@ const Dashboard = () => {
 
       {/* dashboard side bar */}
       <div
-        className={`w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#262424] text-white fixed  z-40  transform ${
+        className={`w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#404345] text-white fixed  z-40  transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 transition-transform duration-200 ease-in-out`}
       >

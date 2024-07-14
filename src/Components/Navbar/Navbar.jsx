@@ -166,7 +166,7 @@ const Navbar = () => {
               isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             } transform transition-transform duration-200 ease-in-out lg:hidden`}
           >
-            <div className="w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#262424]  text-white flex flex-col">
+            <div className="w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#515e68]  text-white flex flex-col">
               <div className="flex p-6 items-center justify-between">
                 <h2 className=" text-xl uppercase  ">Storks</h2>
                 <button
@@ -180,12 +180,12 @@ const Navbar = () => {
                 </button>
               </div>
               <ul className="menu p-2 mt-2 z-[10]">{navlink}</ul>
-              <div className="flex-grow"></div>
+              {/* <div className="flex-grow"></div>
               <div className="mt-auto font-semibold p-4">
                 <p className="text-sm">
                   Copyright © {currentYear} - All right reserved by storks Ltd
                 </p>
-              </div>
+              </div> */}
             </div>
             <div
               className="fixed inset-0 bg-black opacity-50"
@@ -193,16 +193,16 @@ const Navbar = () => {
             ></div>
           </div>
 
-          <div className="flex gap-1 w-full items-center ">
+          <div className="flex gap-2 w-full items-center ">
             <Link to="/">
               <img className="w-24 max-[450px]:w-20" src={logo} alt="" />
             </Link>
-            <Link to="/" className="max-[450px]:hidden">
+            <Link to="/" className="">
               <div className="flex flex-col text-start items-start p-0 ml-0">
-                <h2 className="uppercase text-2xl max-[450px]:text-xl font-extrabold">
+                <h2 className="uppercase text-2xl max-[450px]:text-base font-extrabold">
                   storks
                 </h2>
-                <p className="uppercase text-xs font-bold">
+                <p className=" max-[450px]:hidden uppercase text-xs font-bold">
                   We deliver parcel worldwide
                 </p>
               </div>
@@ -213,11 +213,11 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 font-semibold">{navlink}</ul>
         </div>
         <div className="navbar-end flex gap-4">
-          <div>
+          {/* <div>
             <button className="flex justify-center items-center">
               <IoMdNotificationsOutline className="text-2xl" />
             </button>
-          </div>
+          </div> */}
           <label className="swap swap-rotate">
             <input
               type="checkbox"
@@ -304,7 +304,7 @@ const Navbar = () => {
 
                     <li className="mt-2">
                       <button
-                        className="hover:bg-black hover:bg-opacity-60 block text-center"
+                        className=" hover:bg-black hover:bg-opacity-60 block text-center"
                         onClick={logOutHandler}
                       >
                         Log Out
@@ -317,7 +317,7 @@ const Navbar = () => {
           ) : (
             <>
               <Link to="/login">
-                <button className="btn rounded-3xl max-[450px]:py-1 text-blue-400 bg-black border-none bg-opacity-60 hover:bg-black hover:bg-opacity-40 hover:text-red-400 max-[450px]:px-2">
+                <button className="max-[450px]:hidden btn rounded-3xl max-[450px]:py-1 text-blue-400 bg-black border-none bg-opacity-60 hover:bg-black hover:bg-opacity-40 hover:text-red-400 max-[450px]:px-2">
                   <CiLock className="text-lg" />
                   Login
                 </button>
