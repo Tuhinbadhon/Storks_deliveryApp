@@ -15,6 +15,7 @@ import {
   FaUsers,
   FaUtensils,
   FaWallet,
+  FaTimes,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import { BsGraphUpArrow } from "react-icons/bs";
@@ -32,6 +33,7 @@ import { GrTransaction } from "react-icons/gr";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isAdmin] = useAdmin();
   const [isDeliveryMan] = useDeliveryMan();
   const axiosSecure = useAxiosSecure();
@@ -48,23 +50,38 @@ const Dashboard = () => {
   };
   const helmetContext = {};
   return (
-    <div className="md:flex">
+    <div className="lg:flex">
       <HelmetProvider context={helmetContext}>
         <Helmet>
           <title>Dashboard</title>
         </Helmet>
       </HelmetProvider>
+
       {/* Toggle Button for Small Screens */}
-      <button className="lg:hidden p-4" onClick={toggleSidebar}>
-        <FaList />
-      </button>
+      {!isSidebarOpen && (
+        <button
+          className="lg:hidden md:p-8 p-4 focus:outline-none"
+          onClick={toggleSidebar}
+        >
+          <FaList />
+        </button>
+      )}
 
       {/* dashboard side bar */}
       <div
-        className={`w-64 min-h-screen font-semibold bg-[#404345] text-white fixed lg:relative z-10 lg:z-auto transform ${
+        className={`w-64 min-h-screen font-semibold bg-[#82a5a5] text-white fixed lg:relative z-10 lg:z-auto transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 transition-transform duration-200 ease-in-out`}
       >
+        <div className="flex items-center justify-between p-4">
+          <h2 className="text-xl">Dashboard</h2>
+          <button
+            className="lg:hidden text-2xl  focus:outline-none"
+            onClick={toggleSidebar}
+          >
+            <FaTimes />
+          </button>
+        </div>
         <ul className="menu min-h-screen p-4">
           {isAdmin ? (
             <>
@@ -103,7 +120,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/myReviews">
-                  <FaBook></FaBook>
+                  <FaBook />
                   My Reviews
                 </NavLink>
               </li>
@@ -143,7 +160,7 @@ const Dashboard = () => {
           ></div>
           <li>
             <NavLink to="/">
-              <FaHome></FaHome>
+              <FaHome />
               Home
             </NavLink>
           </li>
@@ -159,8 +176,8 @@ const Dashboard = () => {
       )}
 
       {/* dashboard content */}
-      <div className="flex-1 p-8 overflow-auto lg:ml-5">
-        <Outlet></Outlet>
+      <div className="flex-1 p-5 overflow-auto  transition-all duration-200 ease-in-out">
+        <Outlet />
       </div>
     </div>
   );

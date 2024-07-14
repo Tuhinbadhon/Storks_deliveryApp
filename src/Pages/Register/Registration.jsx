@@ -114,7 +114,7 @@ const Registration = () => {
 
   return (
     <div>
-      <div className=" max-[450px]:h-max  py-10 p-5 bg-gradient-to-r from-pink-400  to-purple-500 ">
+      <div className=" min-h-screen  py-10 p-5 bg-gradient-to-r from-pink-400  to-purple-500 ">
         <HelmetProvider context={helmetContext}>
           <Helmet>
             <title>STORKS | Sign Up</title>

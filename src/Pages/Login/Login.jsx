@@ -186,7 +186,7 @@ const Login = () => {
   // };
 
   return (
-    <div className=" py-10 max-[450px]:h-svh max-[450px]:content-center  bg-gradient-to-r from-pink-400  to-purple-500  p-5">
+    <div className=" py-10  min-h-screen  max-[450px]:content-center  bg-gradient-to-r from-pink-400  to-purple-500  p-5">
       <HelmetProvider context={helmetContext}>
         <Helmet>
           <title>STORKS | Login</title>

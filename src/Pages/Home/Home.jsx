@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://storks-assignment12.vercel.app/");
+        const response = await fetch("https://storks-assignment12.vercel.app");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
