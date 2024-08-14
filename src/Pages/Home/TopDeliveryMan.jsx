@@ -31,8 +31,8 @@ const TopDeliveryMan = () => {
         data-aos-delay="300"
         className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-5"
       >
-        <div className=" flex flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className="p-5 rounded-full shadow-lg border-4 border-gray-300">
+        <div className=" flex  pt-8 rounded-lg flex-col justify-center items-center bg-base-100 shadow-xl">
+          <figure className=" rounded-full shadow-lg  border-gray-300">
             <img
               src="https://i.ibb.co/xjsyCLx/leo.webp"
               alt="Album"
@@ -41,7 +41,7 @@ const TopDeliveryMan = () => {
           </figure>
           <div className="p-5 mb-5">
             <h2 className="flex justify-center gap-1 items-baseline text-xl font-bold mt-4">
-              Abdul Jobbar{" "}
+              David Paul{" "}
               <sup>
                 <span className="flex justify-center items-center">
                   4.7
@@ -52,8 +52,8 @@ const TopDeliveryMan = () => {
             <p className="font-bold"> Percel delivered:30</p>
           </div>
         </div>
-        <div className=" flex flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className="p-5 rounded-full shadow-lg border-4 border-gray-300">
+        <div className=" flex pt-8 rounded-lg flex-col justify-center items-center bg-base-100 shadow-xl">
+          <figure className=" rounded-full shadow-lg  border-gray-300">
             <img
               src="https://i.ibb.co/0yqCgPh/kate.jpg"
               alt="Album"
@@ -62,7 +62,7 @@ const TopDeliveryMan = () => {
           </figure>
           <div className="p-5 mb-5">
             <h2 className="flex justify-center gap-1 items-baseline text-xl font-bold mt-4">
-              Abdul Jobbar{" "}
+              Anjelina july{" "}
               <sup>
                 <span className="flex justify-center items-center">
                   4.5
@@ -73,17 +73,17 @@ const TopDeliveryMan = () => {
             <p className="font-bold"> Percel delivered:20</p>
           </div>
         </div>
-        <div className=" flex flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className="p-5 rounded-full shadow-lg border-4 border-gray-300">
+        <div className=" flex pt-8 rounded-lg flex-col justify-center items-center bg-base-100 shadow-xl">
+          <figure className="rounded-full shadow-lg  border-gray-300">
             <img
               src="https://i.ibb.co/FKXPvRS/image11.jpg"
               alt="Album"
               className="rounded-full w-52 h-52 object-cover"
             />
           </figure>
-          <div className="p-5 mb-5">
+          <div className="p-5  mb-5">
             <h2 className="flex justify-center gap-1 items-baseline text-xl font-bold mt-4">
-              Abdul Jobbar{" "}
+              David Backham{" "}
               <sup>
                 <span className="flex justify-center items-center">
                   4.0

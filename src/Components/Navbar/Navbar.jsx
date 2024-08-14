@@ -164,9 +164,9 @@ const Navbar = () => {
           <div
             className={`fixed inset-0 z-40 flex ${
               isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-            } transform transition-transform duration-200 ease-in-out lg:hidden`}
+            } transform transition-transform duration-700 ease-in-out lg:hidden`}
           >
-            <div className="w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#515e68]  text-white flex flex-col">
+            <div className="w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#515e68]   text-white flex flex-col">
               <div className="flex p-6 items-center justify-between">
                 <h2 className=" text-xl uppercase  ">Storks</h2>
                 <button

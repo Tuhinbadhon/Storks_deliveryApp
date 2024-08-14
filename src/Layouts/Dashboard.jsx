@@ -71,7 +71,7 @@ const Dashboard = () => {
       <div
         className={`w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#404345] text-white fixed  z-40  transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 transition-transform duration-200 ease-in-out`}
+        } lg:translate-x-0 transition-transform duration-700 ease-in-out`}
       >
         <div className="flex items-center justify-between p-4">
           <h2 className="text-xl">Dashboard</h2>
