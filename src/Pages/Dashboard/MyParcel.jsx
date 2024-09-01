@@ -6,6 +6,7 @@ import ReviewModal from "./ReviewModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import Loader from "../../Components/Loader/Loader";
 
 const MyParcels = () => {
   const modalRef = useRef(null);
@@ -81,7 +82,11 @@ const MyParcels = () => {
     : parcels;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    );
   }
 
   if (isError) {

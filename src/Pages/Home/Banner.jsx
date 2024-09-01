@@ -34,7 +34,7 @@ const Banner = () => {
         pagination={{
           clickable: true,
         }}
-        navigation={true}
+        // navigation={true}
         modules={[Pagination, EffectFade, Autoplay, Navigation]}
         className="mySwiper lg:max-w-full  md:max-w-screen-md sm:max-w-screen-sm  
             "

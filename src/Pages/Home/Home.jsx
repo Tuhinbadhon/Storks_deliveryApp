@@ -7,6 +7,7 @@ import Banner from "./Banner";
 import Features from "./Features";
 import TopDeliveryMan from "./TopDeliveryMan";
 import FAQ from "./FAQ";
+import Loader from "../../Components/Loader/Loader";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -32,15 +33,7 @@ const Home = () => {
   if (loading)
     return (
       <div className="flex items-center justify-center h-screen">
-        <DNA
-          visible={true}
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="radio-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-        />
+        <Loader />
       </div>
     );
 

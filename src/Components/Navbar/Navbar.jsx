@@ -15,6 +15,7 @@ import useAdmin from "../../hooks/useAdmin";
 import useDeliveryMan from "../../hooks/useDeliveryMan";
 import { FaGooglePlay, FaPlayCircle } from "react-icons/fa";
 import { CiLock, CiPlay1 } from "react-icons/ci";
+import Loader from "../Loader/Loader";
 
 defineElement(lottie.loadAnimation);
 
@@ -54,8 +55,8 @@ const Navbar = () => {
 
   if (isAdminLoading || isDeliveryManLoading || userLoading) {
     return (
-      <div className="navbar py-3  fixed z-10 bg-opacity-60 max-w-screen-xl mx-auto text-white bg-black">
-        <progress className="progress w-56"></progress>
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
       </div>
     );
   }
@@ -67,7 +68,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/"
-              className="block hover:bg-black hover:bg-opacity-20 hover:border"
+              className=" hover:border-b-2 hover:bg-opacity-20 hover:border-blue-700 "
               onClick={() => setIsDropdownOpen(false)}
             >
               Home
@@ -77,7 +78,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/login"
-              className="block lg:hidden hover:bg-black hover:bg-opacity-20 hover:border"
+              className="hover:border-b-2 hover:bg-opacity-20 hover:border-blue-700 max-[450px]:mt-2 md:hidden"
               onClick={() => setIsDropdownOpen(false)}
             >
               Login / Sign Up
@@ -90,7 +91,7 @@ const Navbar = () => {
         <li>
           <Link
             to="/dashboard/statistics"
-            className="block hover:bg-black hover:bg-opacity-20 hover:border"
+            className="hover:border-b-2 hover:bg-opacity-20 hover:border-blue-700 max-[450px]:mt-2"
           >
             Dashboard
           </Link>
@@ -100,7 +101,7 @@ const Navbar = () => {
         <li>
           <Link
             to="/dashboard/myProfile"
-            className="hover:bg-black hover:bg-opacity-20 hover:border"
+            className="hover:border-b-2 hover:bg-opacity-20 hover:border-blue-700 max-[450px]:mt-2"
           >
             Dashboard
           </Link>
@@ -110,7 +111,7 @@ const Navbar = () => {
         <li>
           <Link
             to="/dashboard/deliveryList"
-            className="hover:bg-black hover:bg-opacity-20 hover:border"
+            className="hover:border-b-2 hover:bg-opacity-20 hover:border-blue-700 max-[450px]:mt-2"
           >
             Dashboard
           </Link>
@@ -151,7 +152,7 @@ const Navbar = () => {
   return (
     <div>
       <ToastContainer />
-      <div className="navbar py-3 fixed z-10 bg-opacity-60 max-w-screen-xl mx-auto text-white bg-black">
+      <div className="navbar py-3 fixed z-10 bg-opacity-60 min-w-screen-xl mx-auto text-white bg-black">
         <div className="navbar-start">
           <button
             className="lg:hidden p-4 focus:outline-none"
@@ -166,10 +167,12 @@ const Navbar = () => {
               isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             } transform transition-transform duration-700 ease-in-out lg:hidden`}
           >
-            <div className="w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#515e68]   text-white flex flex-col">
-              <div className="flex p-6 items-center justify-between">
-                <h2 className=" text-xl uppercase  ">Storks</h2>
-                <button
+            <div className="w-64 max-[450px]:h-svh min-h-screen font-semibold bg-[#515e68]    flex flex-col">
+              <div className="flex p-6 items-center gap-1">
+                <img className="w-16" src={logo} alt="" />
+                <h2 className=" text-lg uppercase  ">Storks</h2>
+
+                {/* <button
                   className=" focus:outline-none  "
                   onClick={(e) => {
                     e.stopPropagation(); // Stop propagation to prevent sidebar from closing
@@ -177,7 +180,7 @@ const Navbar = () => {
                   }}
                 >
                   <IoCloseSharp className="text-3xl" />
-                </button>
+                </button> */}
               </div>
               <ul className="menu p-2 mt-2 z-[10]">{navlink}</ul>
               {/* <div className="flex-grow"></div>
@@ -199,10 +202,10 @@ const Navbar = () => {
             </Link>
             <Link to="/" className="">
               <div className="flex flex-col text-start items-start p-0 ml-0">
-                <h2 className="uppercase text-2xl max-[450px]:text-base font-extrabold">
+                <h2 className="uppercase text-2xl max-[450px]:text-base md:text-base font-extrabold">
                   storks
                 </h2>
-                <p className=" max-[450px]:hidden uppercase text-xs font-bold">
+                <p className=" max-[450px]:hidden uppercase text-xs md:text-[10px] font-bold">
                   We deliver parcel worldwide
                 </p>
               </div>

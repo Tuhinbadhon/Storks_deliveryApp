@@ -44,6 +44,7 @@
     "styled-components": "^6.1.11",
     "sweetalert2": "^11.11.0",
     "swiper": "^11.1.4",
+    "universe": "^0.8.1",
     "use-history": "^1.4.1"
   },
   "devDependencies": {

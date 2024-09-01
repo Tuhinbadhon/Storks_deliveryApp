@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <div className="max-w-screen-xl mx-auto">
+          <div className="min-w-screen-xl mx-auto">
             <RouterProvider router={router} />
           </div>
           <ToastContainer />
