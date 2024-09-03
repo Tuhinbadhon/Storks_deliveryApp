@@ -40,8 +40,8 @@ const Banner = () => {
             "
       >
         <SwiperSlide className="relative">
-          <img src={img1} />
-          <div className="absolute   h-full flex left-0 top-0 items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
+          <img className="" src={img1} />
+          <div className="absolute   h-full flex  items-center  justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
             <div
               data-aos="fade-up"
               data-aos-duration="2000"
@@ -69,7 +69,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide className="relative">
           <img src={img2} />
-          <div className="absolute   h-full flex left-0 top-0 items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
+          <div className="absolute   h-full flex  items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
             <div className="space-y-7 w-8/12 text-center ">
               <h2 className="font-bold lg:text-5xl text-white  uppercase md:text-2xl ">
                 We are <span className="text-orange-500">Experts</span> in
@@ -93,7 +93,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide className="relative">
           <img src={img3} />
-          <div className="absolute   h-full flex left-0 top-0 items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
+          <div className="absolute   h-full flex  items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
             <div className="space-y-7 w-8/12 text-center ">
               <h2 className="font-bold text-white lg:text-5xl uppercase md:text-2xl ">
                 We are <span className="text-orange-500">Experts</span> in
@@ -117,7 +117,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide className="relative">
           <img src={img4} />
-          <div className="absolute   h-full flex left-0 top-0 items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
+          <div className="absolute   h-full flex  items-center justify-center bg-gradient-to-r from-gray-800  to-[rgba(21,21,21,0)] ">
             <div className="space-y-7 w-8/12  text-center ">
               <h2 className="font-bold lg:text-5xl text-white uppercase md:text-3xl ">
                 We are <span className="text-orange-500">Experts</span> in
