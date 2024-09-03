@@ -43,9 +43,9 @@ const TopDeliveryMan = () => {
             <h2 className="flex justify-center gap-1 items-baseline text-xl font-bold mt-4">
               David Paul{" "}
               <sup>
-                <span className="flex justify-center items-center">
+                <span className="flex gap-1 justify-center items-center">
                   4.7
-                  <FaStar />{" "}
+                  <FaStar className="text-blue-700 text-[10px]" />{" "}
                 </span>
               </sup>
             </h2>
@@ -64,9 +64,9 @@ const TopDeliveryMan = () => {
             <h2 className="flex justify-center gap-1 items-baseline text-xl font-bold mt-4">
               Anjelina july{" "}
               <sup>
-                <span className="flex justify-center items-center">
+                <span className="flex gap-1 justify-center items-center">
                   4.5
-                  <FaStar />{" "}
+                  <FaStar className="text-blue-700 text-[10px]" />{" "}
                 </span>
               </sup>
             </h2>
@@ -85,9 +85,9 @@ const TopDeliveryMan = () => {
             <h2 className="flex justify-center gap-1 items-baseline text-xl font-bold mt-4">
               David Backham{" "}
               <sup>
-                <span className="flex justify-center items-center">
+                <span className="flex gap-1 justify-center items-center">
                   4.0
-                  <FaStar />{" "}
+                  <FaStar className="text-blue-700 text-[10px]" />{" "}
                 </span>
               </sup>
             </h2>

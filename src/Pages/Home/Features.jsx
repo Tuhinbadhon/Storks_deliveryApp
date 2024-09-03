@@ -125,7 +125,7 @@ const Features = () => {
         className="mt-2"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div className="p-2 bg-gray-800 shadow-xl">
+          <div className="p-2 bg-gray-800 shadow-xl rounded-lg ">
             <div className="p-2 justify-center items-center flex">
               <TbWorldCheck className="w-10 text-gray-300 h-10" />
             </div>
@@ -140,7 +140,7 @@ const Features = () => {
               <p className="text-lg text-white">Parcel Booked</p>
             </div>
           </div>
-          <div className="p-2 bg-gray-800 shadow-xl">
+          <div className="p-2 bg-gray-800 shadow-xl rounded-lg">
             <div className="p-2 justify-center items-center flex">
               <CiDeliveryTruck className="w-10 text-gray-300 h-10" />
             </div>
@@ -155,7 +155,7 @@ const Features = () => {
               <p className="text-lg text-white">Parcel Delivered</p>
             </div>
           </div>
-          <div className="p-2 bg-gray-800 shadow-xl">
+          <div className="p-2 bg-gray-800 shadow-xl rounded-lg">
             <div className="p-2 justify-center items-center flex">
               <FaUserTie className="w-10 text-gray-300 h-10" />
             </div>
