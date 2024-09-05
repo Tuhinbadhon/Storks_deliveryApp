@@ -5,18 +5,19 @@ const TopDeliveryMan = () => {
   return (
     <div className="lg:mx-24 mx-5">
       <div className=" mx-auto md:w-7/12 text-center mt-20 md:mb-10">
-        <h2
+        <h1
           data-aos="fade-up"
-          data-aos-duration="2000"
-          className="text-3xl uppercase font-bold"
+          data-aos-duration="1000"
+          className="text-xl uppercase  mb-10 lg:text-3xl font-bold text-center relative pb-2"
         >
-          The Top Delivery Man
-        </h2>
+          Top Delivery man{" "}
+          <span className="custom-border absolute left-1/2 transform -translate-x-1/2 bottom-0 lg:w-96  w-60"></span>
+        </h1>
         <p
           data-aos="fade-up"
           data-aos-duration="2000"
           data-aos-delay="200"
-          className="text-lg mt-3 mx-5"
+          className="md:text-lg text-base mt-3 mx-5"
         >
           Our <span className="text-green-500">Top</span> delivery man ensures
           your packages arrive
@@ -32,7 +33,7 @@ const TopDeliveryMan = () => {
         className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-5"
       >
         <div className=" flex  pt-8 rounded-lg flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className=" rounded-full shadow-lg  border-gray-300">
+          <figure className=" rounded-full shadow-lg mt-5 border-gray-300">
             <img
               src="https://i.ibb.co/xjsyCLx/leo.webp"
               alt="Album"
@@ -53,7 +54,7 @@ const TopDeliveryMan = () => {
           </div>
         </div>
         <div className=" flex pt-8 rounded-lg flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className=" rounded-full shadow-lg  border-gray-300">
+          <figure className=" rounded-full shadow-lg mt-5  border-gray-300">
             <img
               src="https://i.ibb.co/0yqCgPh/kate.jpg"
               alt="Album"
@@ -74,7 +75,7 @@ const TopDeliveryMan = () => {
           </div>
         </div>
         <div className=" flex pt-8 rounded-lg flex-col justify-center items-center bg-base-100 shadow-xl">
-          <figure className="rounded-full shadow-lg  border-gray-300">
+          <figure className="rounded-full shadow-lg mt-5  border-gray-300">
             <img
               src="https://i.ibb.co/FKXPvRS/image11.jpg"
               alt="Album"

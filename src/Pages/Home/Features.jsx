@@ -46,18 +46,19 @@ const Features = () => {
   return (
     <div className="lg:mx-24 mx-5">
       <div className="text-center mt-20">
-        <h2
+        <h1
           data-aos="fade-up"
-          data-aos-duration="2000"
-          className="text-3xl uppercase font-bold"
+          data-aos-duration="1000"
+          className="text-xl uppercase  mb-10 lg:text-3xl font-bold text-center relative pb-2"
         >
           Features
-        </h2>
+          <span className="custom-border absolute left-1/2 transform -translate-x-1/2 bottom-0 lg:w-64  w-52"></span>
+        </h1>
         <p
           data-aos="fade-up"
           data-aos-duration="2000"
           data-aos-delay="200"
-          className="text-lg mt-3 mx-5"
+          className="md:text-lg text-base mt-3 mx-5"
         >
           We're leading{" "}
           <span className="font-bold text-orange-500">Parcel Service</span> in

@@ -155,7 +155,7 @@ const Navbar = () => {
       <div className="navbar py-3 fixed z-10 bg-opacity-60 min-w-screen-xl mx-auto text-white bg-black">
         <div className="navbar-start">
           <button
-            className="lg:hidden  mr-2  border border-gray-600 p-[6px] rounded-md focus:outline-none"
+            className="lg:hidden  mx-2  border border-gray-600 p-1 rounded-[4px] focus:outline-none"
             onClick={toggleSidebar}
           >
             <LuAlignJustify size={14} className="text-[#ccd0d9]" />
@@ -198,11 +198,11 @@ const Navbar = () => {
 
           <div className="flex gap-2 w-full items-center ">
             <Link to="/">
-              <img className="w-24 max-[450px]:w-20" src={logo} alt="" />
+              <img className="w-24 " src={logo} alt="" />
             </Link>
             <Link to="/" className="">
               <div className="flex flex-col text-start items-start p-0 ml-0">
-                <h2 className="uppercase text-2xl max-[450px]:text-lg md:text-base font-extrabold">
+                <h2 className="uppercase text-2xl max-[450px]:text-lg md:text-base font-bold">
                   storks
                 </h2>
                 <p className=" max-[450px]:hidden uppercase text-xs md:text-[10px] font-bold">
