@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
+import styled from "styled-components";
 
 const GoToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,11 +10,11 @@ const GoToTop = () => {
   };
 
   const listenToScroll = () => {
-    let heightToHidden = 20;
+    const heightToShow = 20; // Scroll height to show button
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
 
-    if (winScroll > heightToHidden) {
+    if (winScroll > heightToShow) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -28,11 +28,12 @@ const GoToTop = () => {
 
   return (
     <Wrapper>
-      {isVisible && (
-        <div className="top-btn" onClick={goToBtn}>
-          <FaArrowUp className="top-btn--icon" />
-        </div>
-      )}
+      <div
+        className={`top-btn ${isVisible ? "visible" : ""}`}
+        onClick={goToBtn}
+      >
+        <FaArrowUp className="top-btn--icon" />
+      </div>
     </Wrapper>
   );
 };
@@ -47,19 +48,19 @@ const Wrapper = styled.section`
     font-size: 2rem;
     width: 3rem;
     height: 3rem;
-
     color: white;
-    background-color: rgba(31, 41, 55, 0.5);
+    background-color: rgba(31, 41, 55, 0.8);
     box-shadow: ${({ theme }) => theme.colors.shadow};
     border-radius: 50%;
     position: fixed;
-    bottom: 5rem;
+    bottom: -5rem; /* Initially hidden off-screen */
     right: 5rem;
     z-index: 999;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: bottom 0.4s ease-in-out; /* Smooth transition */
 
     &--icon {
       animation: gototop 1.2s linear infinite alternate-reverse;
@@ -72,6 +73,11 @@ const Wrapper = styled.section`
       100% {
         transform: translateY(1rem);
       }
+    }
+
+    /* When the button becomes visible */
+    &.visible {
+      bottom: 5rem; /* Move into view when visible */
     }
   }
 
