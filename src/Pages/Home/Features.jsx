@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { FaRocket, FaShippingFast, FaUserTie } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import CountUp from "react-countup";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { FaShippingFast, FaUserTie } from "react-icons/fa";
 import { MdOutlineSecurity } from "react-icons/md";
 import { RxRocket } from "react-icons/rx";
 import { TbWorldCheck } from "react-icons/tb";
-import { CiDeliveryTruck } from "react-icons/ci";
-import CountUp from "react-countup";
-import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Features = () => {
@@ -34,7 +34,7 @@ const Features = () => {
 
   const totalParcelsBooked = parcels.length;
   const totalParcelsDelivered = parcels.filter(
-    (parcel) => parcel.status.toLowerCase() === "delivered".toLowerCase()
+    (parcel) => parcel.status.toLowerCase() === "delivered".toLowerCase(),
   ).length;
 
   const totalUsers = users.length;
@@ -46,35 +46,40 @@ const Features = () => {
   return (
     <div className="lg:mx-24 mx-5">
       <div className="text-center mt-20">
-        <h1
-          data-aos="fade-up"
-          data-aos-duration="1000"
+        <motion.h1
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-xl uppercase  mb-10 lg:text-3xl font-bold text-center relative pb-2"
         >
           Features
           <span className="custom-border absolute left-1/2 transform -translate-x-1/2 bottom-0 lg:w-64  w-52"></span>
-        </h1>
-        <p
-          data-aos="fade-up"
-          data-aos-duration="2000"
-          data-aos-delay="200"
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.08 }}
           className="md:text-lg text-base mt-3 mx-5"
         >
           We're leading{" "}
           <span className="font-bold text-orange-500">Parcel Service</span> in
           the world
-        </p>
+        </motion.p>
       </div>
 
       {/*features cards  */}
 
-      <div
-        data-aos="fade-up"
-        data-aos-duration="2000"
-        data-aos-delay="300"
-        className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-5"
-      >
-        <div className="card p-5 lg:card-side bg-base-100 shadow-xl">
+      <div className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-5">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="card p-5 lg:card-side bg-base-100 shadow-xl"
+        >
           <div className="p-4 justify-center items-center flex">
             <RxRocket className="w-20 text-gray-300 h-20" />
           </div>
@@ -87,8 +92,15 @@ const Features = () => {
               arrive swiftly and securely.
             </p>
           </div>
-        </div>
-        <div className="card p-5 lg:card-side bg-base-100 shadow-xl">
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.08 }}
+          className="card p-5 lg:card-side bg-base-100 shadow-xl"
+        >
           <div className="p-4 justify-center items-center flex">
             <MdOutlineSecurity className="w-20 text-gray-300 h-20" />
           </div>
@@ -100,8 +112,15 @@ const Features = () => {
               destination
             </p>
           </div>
-        </div>
-        <div className="card p-5 lg:card-side bg-base-100 shadow-xl">
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.16 }}
+          className="card p-5 lg:card-side bg-base-100 shadow-xl"
+        >
           <div className="p-4 justify-center items-center flex">
             <FaShippingFast className="w-20 text-gray-300 h-20" />
           </div>
@@ -115,18 +134,19 @@ const Features = () => {
               destinations across the globe.
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* statistic cards */}
-      <div
-        data-aos="fade-up"
-        data-aos-duration="2000"
-        data-aos-delay="400"
-        className="mt-2"
-      >
+      <div className="mt-2">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div className="p-2 bg-gray-800 shadow-xl rounded-lg ">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+            className="p-2 bg-gray-800 shadow-xl rounded-lg "
+          >
             <div className="p-2 justify-center items-center flex">
               <TbWorldCheck className="w-10 text-gray-300 h-10" />
             </div>
@@ -140,8 +160,15 @@ const Features = () => {
               </h2>
               <p className="text-lg text-white">Parcel Booked</p>
             </div>
-          </div>
-          <div className="p-2 bg-gray-800 shadow-xl rounded-lg">
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.08 }}
+            className="p-2 bg-gray-800 shadow-xl rounded-lg"
+          >
             <div className="p-2 justify-center items-center flex">
               <CiDeliveryTruck className="w-10 text-gray-300 h-10" />
             </div>
@@ -155,8 +182,15 @@ const Features = () => {
               </h2>
               <p className="text-lg text-white">Parcel Delivered</p>
             </div>
-          </div>
-          <div className="p-2 bg-gray-800 shadow-xl rounded-lg">
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.16 }}
+            className="p-2 bg-gray-800 shadow-xl rounded-lg"
+          >
             <div className="p-2 justify-center items-center flex">
               <FaUserTie className="w-10 text-gray-300 h-10" />
             </div>
@@ -166,7 +200,7 @@ const Features = () => {
               </h2>
               <p className="text-lg text-white">Total Users</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
-import { DNA, Radio } from "react-loader-spinner";
-import Banner from "./Banner";
-import Features from "./Features";
-import TopDeliveryMan from "./TopDeliveryMan";
-import FAQ from "./FAQ";
 import Loader from "../../Components/Loader/Loader";
+import Banner from "./Banner";
+import CTASection from "./CTASection";
+import FAQ from "./FAQ";
+import Features from "./Features";
+import HowItWorks from "./HowItWorks";
+import Testimonials from "./Testimonials";
+import TopDeliveryMan from "./TopDeliveryMan";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -48,7 +50,10 @@ const Home = () => {
       </HelmetProvider>
       <Banner />
       <Features />
+      <HowItWorks />
       <TopDeliveryMan />
+      <Testimonials />
+      <CTASection />
       <FAQ />
     </div>
   );

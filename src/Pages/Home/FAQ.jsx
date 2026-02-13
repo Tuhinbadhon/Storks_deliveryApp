@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import "./FAQ.css";
 
 const FAQ = () => {
@@ -46,16 +47,24 @@ const FAQ = () => {
     <div>
       <section className="lg:mx-24 mx-5 md:mt-16 mt-10">
         <div className="container flex flex-col items-center  mx-auto ">
-          <h1
-            data-aos="fade-up"
-            data-aos-duration="1000"
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
             className="text-xl mb-10 lg:text-3xl font-bold text-center relative pb-2"
           >
             Frequently Asked Questions
             <span className="custom-border absolute left-1/2 transform -translate-x-1/2 bottom-0 w-full"></span>
-          </h1>
+          </motion.h1>
 
-          <div className="" data-aos="fade-up" data-aos-duration="1000">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.08 }}
+            className=""
+          >
             {faqItems.map((item, index) => (
               <div
                 key={index}
@@ -81,7 +90,7 @@ const FAQ = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

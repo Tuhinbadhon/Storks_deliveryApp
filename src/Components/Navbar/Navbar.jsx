@@ -1,20 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
+import { motion } from "framer-motion";
+import lottie from "lottie-web";
+import { useContext, useEffect, useState } from "react";
+import { CiLock } from "react-icons/ci";
+import { LuAlignJustify } from "react-icons/lu";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { LuLogIn, LuLogOut, LuAlignJustify } from "react-icons/lu";
-import { MdAppRegistration } from "react-icons/md";
-import { IoCloseSharp } from "react-icons/io5";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import logo from "../../../public/logo.png";
 import useAdmin from "../../hooks/useAdmin";
 import useDeliveryMan from "../../hooks/useDeliveryMan";
-import { FaGooglePlay, FaPlayCircle } from "react-icons/fa";
-import { CiLock, CiPlay1 } from "react-icons/ci";
+import { AuthContext } from "../../Provider/AuthProvider";
 import Loader from "../Loader/Loader";
 
 defineElement(lottie.loadAnimation);
@@ -27,6 +24,7 @@ const Navbar = () => {
   const [Open, setOpen] = useState(false);
   const [DropdownOpen, setDropdownOpen] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [isScrolled, setIsScrolled] = useState(false);
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
@@ -34,6 +32,13 @@ const Navbar = () => {
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const handleToogle = (e) => {
     if (e.target.checked) {
@@ -150,9 +155,22 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <ToastContainer />
-      <div className="navbar py-3 fixed z-10 bg-opacity-60 min-w-screen-xl mx-auto text-white bg-black">
+      <motion.div
+        initial={false}
+        animate={isScrolled ? "scrolled" : "top"}
+        variants={{
+          top: { y: 0, opacity: 1 },
+          scrolled: { y: 0, opacity: 1 },
+        }}
+        transition={{ duration: 0.25 }}
+        className={`navbar py-3 max-w-screen-xl mx-auto text-white transition-all duration-300 ${
+          isScrolled
+            ? "fixed top-0 left-0 right-0 z-30 bg-black bg-opacity-50 backdrop-blur-md shadow-md"
+            : "absolute top-0 left-0 right-0 z-20 bg-transparent"
+        }`}
+      >
         <div className="navbar-start">
           <button
             className="lg:hidden  mx-2  border border-gray-600 p-1 rounded-[4px] focus:outline-none"
@@ -328,7 +346,7 @@ const Navbar = () => {
             </>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

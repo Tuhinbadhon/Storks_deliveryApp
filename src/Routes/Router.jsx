@@ -163,8 +163,6 @@ export const router = createBrowserRouter([
       {
         path: "updateParcel",
         element: <UpdateParcel />,
-        // loader: ({ params }) =>
-        //   fetch(`https://storks-assignment12.vercel.app/parcels/${params.id}`),
       },
     ],
   },

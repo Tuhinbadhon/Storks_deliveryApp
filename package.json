@@ -16,6 +16,7 @@
     "aos": "^3.0.0-beta.6",
     "axios": "^1.7.2",
     "firebase": "^10.12.2",
+    "framer-motion": "^10.12.16",
     "helmet": "^7.1.0",
     "leaflet": "^1.9.4",
     "localforage": "^1.10.0",
