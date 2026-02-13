@@ -20,7 +20,10 @@ const HowItWorks = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-screen-xl">
         <div className="text-center mb-10">
-          <h3 className="text-indigo-600 font-semibold">How it works</h3>
+          <h3 className="text-xl uppercase  mb-10 lg:text-3xl font-bold text-center relative pb-2">
+            How it works
+            <span className="custom-border absolute left-1/2 transform -translate-x-1/2 bottom-0 lg:w-64  w-52"></span>
+          </h3>
           <h2 className="text-3xl sm:text-4xl font-bold">
             Send parcels in 3 easy steps
           </h2>

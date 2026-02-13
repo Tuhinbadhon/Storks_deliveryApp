@@ -44,9 +44,9 @@ const FAQ = () => {
   ];
 
   return (
-    <div>
+    <div className="bg-gray-50 my-5 md:my-20 shadow-sm p-1 md:p-10">
       <section className="lg:mx-24 mx-5 md:mt-16 mt-10">
-        <div className="container flex flex-col items-center  mx-auto ">
+        <div className="container flex flex-col items-center   mx-auto ">
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
