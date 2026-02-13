@@ -1,20 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "./Registration.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { updateProfile } from "firebase/auth";
-import Swal from "sweetalert2";
-import ReactDOM from "react-dom";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import { AuthContext } from "../../Provider/AuthProvider";
+import { motion } from "framer-motion";
+import { useContext, useEffect, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  loadCaptchaEnginge,
   LoadCanvasTemplate,
+  loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { AuthContext } from "../../Provider/AuthProvider";
+import "./Registration.css";
 
 const Registration = () => {
   const axiosPublic = useAxiosPublic();
@@ -79,7 +77,7 @@ const Registration = () => {
               if (res.data.insertedID) {
                 console.log("User added to the database");
                 e.target.reset();
-                setShowPass(false);
+                setShowpass(false);
                 Swal.fire({
                   text: "Successfully Registered",
                   icon: "success",
@@ -113,164 +111,178 @@ const Registration = () => {
   };
 
   return (
-    <div>
-      <div className=" min-h-screen  py-10 p-5 bg-gradient-to-r from-pink-400  to-purple-500 ">
-        <HelmetProvider context={helmetContext}>
-          <Helmet>
-            <title>STORKS | Sign Up</title>
-          </Helmet>
-        </HelmetProvider>
-        <div className="mx-auto  bg-white w-full max-w-md p-10 rounded-2xl shadow max-[450px]:p-8">
-          <h2 className="mb-5 mt-7 text-3xl font-bold text-center uppercase text-gradient">
-            Create Account!
-          </h2>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.45 }}
+      className="min-h-screen py-12 bg-gradient-to-b from-indigo-50 via-white to-pink-50 flex items-center"
+    >
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -right-40 -top-20 w-96 h-96 bg-indigo-100 rounded-full opacity-30 blur-3xl transform rotate-45"></div>
+        <div className="absolute -left-32 -bottom-20 w-80 h-80 bg-pink-100 rounded-full opacity-30 blur-3xl"></div>
+      </div>
 
-          <p className="text-sm font-semibold text-center dark:text-gray-600">
-            Already have an account?{" "}
-            <Link
-              to="/login"
-              rel="noopener noreferrer"
-              className="focus:underline font-semibold hover:underline text-primary"
-            >
-              Login here
-            </Link>
-          </p>
+      <div className="container mx-auto px-4 z-10">
+        <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+          <div className="p-8 md:p-12">
+            <h2 className="text-2xl font-bold">Create your account</h2>
+            <p className="mt-2 text-sm text-gray-500">
+              Join Storks — fast parcel booking and reliable delivery tracking.
+            </p>
 
-          <form
-            noValidate=""
-            action=""
-            className="space-y-8 mt-9"
-            onSubmit={registerFormHandler}
-          >
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <label htmlFor="text" className="block font-semibold text-sm">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400 "
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="text" className="block font-semibold text-sm">
-                  Photo URL
-                </label>
-                <input
-                  type="text"
-                  name="photoURL"
-                  placeholder="http://www......"
-                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="text" className="block font-semibold text-sm">
-                  Phone No.
-                </label>
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Enter Your Phone No."
-                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400 "
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="block font-semibold text-sm">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email here"
-                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <label htmlFor="password" className="text-sm font-semibold">
-                    Password
+            <form onSubmit={registerFormHandler} className="mt-6 space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Full name
                   </label>
-                </div>
-                <div className="relative">
                   <input
-                    type={showPass ? "text" : "password"}
-                    name="password"
-                    id="password"
-                    placeholder="*****"
-                    className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
+                    name="name"
+                    required
+                    className="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/60 focus:ring-2 focus:ring-indigo-300 outline-none"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Phone
+                  </label>
+                  <input
+                    name="phoneNumber"
+                    required
+                    className="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/60 focus:ring-2 focus:ring-indigo-300 outline-none"
+                    placeholder="01xxxxxxxx"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  className="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/60 focus:ring-2 focus:ring-indigo-300 outline-none"
+                  placeholder="you@company.com"
+                />
+              </div>
+
+              <div className="relative">
+                <label className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <input
+                  name="password"
+                  type={showPass ? "text" : "password"}
+                  required
+                  className="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/60 focus:ring-2 focus:ring-indigo-300 outline-none pr-10"
+                  placeholder="Create a password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowpass(!showPass)}
+                  className="absolute right-3 top-3 text-gray-500"
+                >
+                  {showPass ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Photo URL (optional)
+                </label>
+                <input
+                  name="photoURL"
+                  className="mt-1 block w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/60 focus:ring-2 focus:ring-indigo-300 outline-none"
+                  placeholder="https://"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  User type
+                </label>
+                <select
+                  name="role"
+                  required
+                  className="mt-1 block w-40 px-4 py-3 rounded-xl border border-gray-200 bg-white/60 focus:ring-2 focus:ring-indigo-300 outline-none"
+                >
+                  <option value="user">User</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Captcha
+                </label>
+                <div className="flex items-center gap-3">
+                  <div className="bg-gray-50 p-2 rounded-md">
+                    <LoadCanvasTemplate />
+                  </div>
+                  <input
+                    onBlur={handleValidateCaptcha}
+                    name="captcha"
+                    placeholder="Enter captcha"
+                    className="flex-1 px-4 py-3 rounded-xl border border-gray-200 bg-white/60 focus:ring-2 focus:ring-indigo-300 outline-none"
                     required
                   />
-                  <span
-                    className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-                    onClick={() => {
-                      setShowpass(!showPass);
-                    }}
-                  >
-                    {showPass ? <FaEyeSlash /> : <FaEye />}
-                  </span>
-                </div>
-                <div className="form-control md:w-1/2 ">
-                  <label className="label">
-                    <span className="label-text block font-semibold text-sm">
-                      {" "}
-                      User Type
-                    </span>
-                  </label>
-                  <label className="input-group ">
-                    <select
-                      name="role"
-                      className="input input-bordered"
-                      required
-                    >
-                      <option value="user">User</option>
-                    </select>
-                  </label>
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="label ">
-                  <LoadCanvasTemplate />
-                </label>
-                <input
-                  onBlur={handleValidateCaptcha}
-                  type="text"
-                  name="captcha"
-                  placeholder="Type the captcha here "
-                  className="w-full px-3 py-2 border-b outline-none focus:border-b-1 focus:border-blue-400"
-                  required
-                />
-              </div>
-            </div>
-            <div className="flex gap-2 ">
-              <input
-                type="checkbox"
-                onClick={() => setShowButton(!showButton)}
-                required
-              />
-              <p className="font-semibold">
-                I accept all the{" "}
-                <a href="">
-                  <u>Terms & Conditions</u>
-                </a>{" "}
-              </p>
-            </div>
 
-            <button
-              className="btn w-full  px-8 
-                        font-bold rounded-3xl dark:bg-pink-500 hover:bg-purple-500 dark:text-gray-50"
-              disabled={disabled}
+              <label className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  onClick={() => setShowButton(!showButton)}
+                  required
+                  className="w-4 h-4 rounded"
+                />
+                <span className="text-sm font-semibold">
+                  I accept the <u>Terms &amp; Conditions</u>
+                </span>
+              </label>
+
+              <button
+                type="submit"
+                disabled={disabled || isLoading}
+                className="w-full py-3 bg-indigo-600 disabled:opacity-50 text-white rounded-2xl font-semibold shadow-md"
+              >
+                {isLoading ? "Creating..." : "Create account"}
+              </button>
+            </form>
+
+            <p className="mt-4 text-sm text-gray-500">
+              Already registered?{" "}
+              <Link to="/login" className="text-indigo-600 font-semibold">
+                Sign in
+              </Link>
+            </p>
+          </div>
+
+          <div className="hidden md:flex items-center justify-center bg-gradient-to-tr from-indigo-50 to-white p-8">
+            <motion.div
+              initial={{ scale: 0.98, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center px-4"
             >
-              {isLoading ? "Loading..." : "Sign Up"}
-            </button>
-          </form>
+              <h3 className="text-2xl font-bold mb-2">
+                Get started with Storks
+              </h3>
+              <p className="text-sm text-gray-500 mb-6">
+                Fast pickups, secure deliveries and real-time tracking — sign up
+                and start sending.
+              </p>
+              <div className="inline-flex bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow">
+                Book a Parcel
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
